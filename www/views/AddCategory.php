@@ -1,17 +1,16 @@
   <!-- Main Content -->
   <main class="content">
     <h1 class="title new-item">Nova Categoria</h1>
+    <div id="alert"></div>
 
     <form method="POST" id="form-add-category">
       <div class="input-field">
-        <label for="category-name" class="label">Nome de categoria</label>
-        <input type="text" id="category-name"  name="category-name"class="input-text" />
-        
-      </div>
-      <div class="input-field">
         <label for="category-code" class="label">Código de categoria</label>
         <input type="text" id="category-code" name="category-code" class="input-text" />
-        
+      </div>
+      <div class="input-field">
+        <label for="category-name" class="label">Nome de categoria</label>
+        <input type="text" id="category-name"  name="category-name"class="input-text" />
       </div>
       <div class="actions-form">
         <a href="<?php echo BASE_URL?>Category" class="action back">Voltar</a>

@@ -14,16 +14,14 @@
         }
         public function addCategory(){
             
-            return true;
-            /*$cateRepo = new CategoryRepository();
+            $cateRepo = new CategoryRepository();
             $name = ucfirst(utf8_encode(addslashes($_POST['category-name'])));
             $cod = strtoupper($_POST['category-code']);
-            $status = true;
             if($cateRepo->insertCategory($cod, $name)){
-                return $status;
+                echo "Produto cadastrado com sucesso";
             }else{ 
-                return $status;
-            }*/
+                echo "Nome ou Código de categorias já existem no banco de dados";
+            }
             
         }
         
