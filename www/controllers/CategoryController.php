@@ -13,18 +13,18 @@
             $this->loadTemplate('AddCategory', $data);
         }
         public function addCategory(){
-            if(isset($_POST['category-name'], $_POST['category-code']) && (!empty($_POST['category-name']) && !empty($_POST['category-code']))){
-                $cateRepo = new CategoryRepository();
-                $name = ucfirst($_POST['category-name']);
-                $cod = strtoupper($_POST['category-code']);
-                if($cateRepo->insertCategory($cod, $name)  == true){
-                   
-                }else{
-                    
-                }
-                
-                
-            } 
+            
+            return true;
+            /*$cateRepo = new CategoryRepository();
+            $name = ucfirst(utf8_encode(addslashes($_POST['category-name'])));
+            $cod = strtoupper($_POST['category-code']);
+            $status = true;
+            if($cateRepo->insertCategory($cod, $name)){
+                return $status;
+            }else{ 
+                return $status;
+            }*/
+            
         }
         
     }

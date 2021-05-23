@@ -4,7 +4,7 @@
     
     <div class="header-list-page">
       <h1 class="title">Produtos</h1>
-      <a href="<?php echo BASE_URL?>/Product/addProduct" class="btn-action">Adicionar novo produto</a>
+      <a href="<?php echo BASE_URL?>Product/addProduct" class="btn-action">Adicionar novo produto</a>
     </div>
     <form  method="GET">
       <div class="input-field">

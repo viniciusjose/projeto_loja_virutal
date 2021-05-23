@@ -12,19 +12,16 @@ $(document).ready(function () {
             contentType:false,
             processData:false,
             success: function (msg) {
-                if(msg == false){
-                    alert("Erro ao adicionar");
-                    //$('.title').after('<p class="error-msg">Erro ao cadastrar (Nome ou Código de Categoria existentes).</p>');
-                }else{
-                    alert("Cadastrado com sucesso");
-                    /*$('.title').after('<p class="success-msg">Categoria cadastrada com sucesso.</p>');
+                if(msg == true){
+                    $('.title').after('<p class="success-msg">Categoria cadastrada com sucesso.</p>');
                     $('#category-name').val("");
-                    $('#category-code').val("");*/
+                    $('#category-code').val("");
                 }
-                
-            },
-            error: function(){
-                $('.title').after('<p class="error-msg">Erro ao cadastrar.</p>');
+                if(msg == false){
+                    
+                    $('.title').after('<p class="error-msg">Erro ao cadastrar (Nome ou Código de Categoria existentes).</p>');
+                }
+
             }
         });
     });
