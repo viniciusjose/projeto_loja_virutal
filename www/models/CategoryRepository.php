@@ -7,9 +7,9 @@
                 $sql->bindValue(":cod_category", $cod);
                 $sql->bindValue(":name_category", $name);
                 $sql->execute();
-                
+                return true;
             }else{
-                
+                return false;
             }
         }
         

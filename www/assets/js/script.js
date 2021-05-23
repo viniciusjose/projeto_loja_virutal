@@ -13,11 +13,13 @@ $(document).ready(function () {
             processData:false,
             success: function (msg) {
                 if(msg == false){
-                    $('.title').after('<p class="error-msg">Erro ao cadastrar (Nome ou Código de Categoria existentes).</p>');
+                    alert("Erro ao adicionar");
+                    //$('.title').after('<p class="error-msg">Erro ao cadastrar (Nome ou Código de Categoria existentes).</p>');
                 }else{
-                    $('.title').after('<p class="success-msg">Categoria cadastrada com sucesso.</p>');
+                    alert("Cadastrado com sucesso");
+                    /*$('.title').after('<p class="success-msg">Categoria cadastrada com sucesso.</p>');
                     $('#category-name').val("");
-                    $('#category-code').val("");
+                    $('#category-code').val("");*/
                 }
                 
             },
