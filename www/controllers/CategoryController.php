@@ -17,10 +17,10 @@
                 $cateRepo = new CategoryRepository();
                 $name = ucfirst($_POST['category-name']);
                 $cod = strtoupper($_POST['category-code']);
-                if($cateRepo->insertCategory($name, $cod) == false){
-                    return true;
+                if($cateRepo->insertCategory($cod, $name)  == true){
+                   
                 }else{
-                    return false;
+                    
                 }
                 
                 
