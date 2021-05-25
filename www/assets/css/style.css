@@ -282,9 +282,15 @@ body {
         width: 144px;
       }
     }
+    .success-msg{
+      padding: 30px;
+      color: #008800 ;
+      border-radius: 10px;
+      background-color: #b7d5ac;
+    }
     .alert-msg{
       padding: 30px;
-      color: #ff8c00 ;
+      color: #ffa500 ;
       border-radius: 10px;
-      border: 1px solid #ff8c00;
+      background-color: #ffe0b5;
     }

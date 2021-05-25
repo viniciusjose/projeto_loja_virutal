@@ -6,21 +6,22 @@
             ];
             $this->loadTemplate('Categories', $data);
         }
-        public function add(){
+        public function addScreen(){
             $data = [
                 'page' => 'Categorias'
             ];
             $this->loadTemplate('AddCategory', $data);
         }
         public function addCategory(){
-            
+            $status = true;
             $cateRepo = new CategoryRepository();
             $name = ucfirst(utf8_encode(addslashes($_POST['category-name'])));
             $cod = strtoupper($_POST['category-code']);
             if($cateRepo->insertCategory($cod, $name)){
-                echo "Produto cadastrado com sucesso";
+                echo json_encode($status);
             }else{ 
-                echo "Nome ou Código de categorias já existem no banco de dados";
+                $status = false;
+                echo json_encode($status);
             }
             
         }

@@ -3,7 +3,7 @@
   <main class="content">
     <div class="header-list-page">
       <h1 class="title">Categorias</h1>
-      <a href="<?php echo BASE_URL?>Category/add" class="btn-action">Adicionar nova categoria</a>
+      <a href="<?php echo BASE_URL?>Category/addScreen" class="btn-action">Adicionar nova categoria</a>
     </div>
     <form  method="GET">
       <div class="input-field">

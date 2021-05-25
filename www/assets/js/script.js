@@ -8,17 +8,26 @@ $(document).ready(function () {
         $.ajax({
             type: "POST",
             url: "http://localhost:8000/Category/addCategory",
+            dataType:'json',
             data: {
                 'category-name':nameCat,
                 'category-code':codCat
             },
-            success: function (result) {
-                $('#form-add-category').trigger("reset");
-                $('#alert').addClass('alert-msg');
-                $('#alert').fadeIn().html(result);
-                setTimeout(function(){
-                    $('#alert').fadeOut('Slow')
-                }, 5000)
+            success: function (json) {
+                if(json == true){
+                    $('#form-add-category').trigger("reset");
+                    $('#alert').addClass('success-msg');
+                    $('#alert').fadeIn().html('Categoria cadastrada com sucesso.');
+                    setTimeout(function(){
+                        $('#alert').fadeOut('Slow')
+                    }, 5000)
+                }else{
+                    $('#alert').addClass('alert-msg');
+                    $('#alert').fadeIn().html('Erro ao cadastrar (Nome/Código de categorias duplicados.)');
+                    setTimeout(function(){
+                        $('#alert').fadeOut('Slow')
+                    }, 5000)
+                }
             }
         });
     });

@@ -21,9 +21,9 @@
   <a href="<?php echo BASE_URL?>"><img src="<?php echo BASE_URL?>assets/images/menu-go-jumpers.png" alt="Welcome" width="200" height="43" /></a>
   <div>
     <ul>
-      <li><a href="<?php echo BASE_URL?>/Category" class="link-menu">Categorias</a></li>
-      <li><a href="<?php echo BASE_URL?>/Product" class="link-menu">Produtos</a></li>
-      <li><a href="<?php echo BASE_URL?>/Log" class="link-menu">Log</a></li>
+      <li><a href="<?php echo BASE_URL?>Category" class="link-menu">Categorias</a></li>
+      <li><a href="<?php echo BASE_URL?>Product" class="link-menu">Produtos</a></li>
+      <li><a href="<?php echo BASE_URL?>Log" class="link-menu">Logs</a></li>
     </ul>
   </div>
 </amp-sidebar>

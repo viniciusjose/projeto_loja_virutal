@@ -6,11 +6,14 @@
             ];
             $this->loadTemplate('Products', $data);
         }
-        public function add(){
+        public function addScreen(){
             $data = [
                 'page' => 'Adicionar Produtos'
             ];
             $this->loadTemplate('AddProduct', $data);
+        }
+        public function addProduct(){
+            
         }
     }
    

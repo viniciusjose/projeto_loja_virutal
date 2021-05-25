@@ -25,6 +25,10 @@
                $currentController = 'HomeController';
                $currentAction = 'index';
             }
+            if(!file_exists('controllers/'.$currentController.'.php') || !method_exists($currentController, $currentAction)){
+                $currentController = 'NotFoundController';
+                $currentAction = 'index';
+            }
 
            $controller = new $currentController();
            call_user_func_array(array($controller, $currentAction),$params);
