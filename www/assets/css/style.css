@@ -282,6 +282,7 @@ body {
         width: 144px;
       }
     }
+    /*Customizações não realizadas pela Webjump*/
     .success-msg{
       padding: 30px;
       color: #008800 ;
@@ -293,4 +294,12 @@ body {
       color: #ffa500 ;
       border-radius: 10px;
       background-color: #ffe0b5;
+    }
+    .error404{
+      display: block;
+      align-content: center;
+      margin-left: 14rem;
+    }
+    .btn-404{
+      margin-bottom: 40px !important;
     }
