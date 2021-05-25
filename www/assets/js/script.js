@@ -20,12 +20,16 @@ $(document).ready(function () {
                     $('#alert').fadeIn().html('Categoria cadastrada com sucesso.');
                     setTimeout(function(){
                         $('#alert').fadeOut('Slow')
+                        $('#alert').fadeIn().html('');
+                        $('#alert').removeClass('success-msg');
                     }, 5000)
                 }else{
                     $('#alert').addClass('alert-msg');
                     $('#alert').fadeIn().html('Erro ao cadastrar (Nome/Código de categorias duplicados.)');
                     setTimeout(function(){
                         $('#alert').fadeOut('Slow')
+                        $('#alert').fadeIn().html('');
+                        $('#alert').removeClass('alert-msg');
                     }, 5000)
                 }
             }
