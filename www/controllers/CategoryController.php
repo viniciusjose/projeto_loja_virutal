@@ -2,13 +2,16 @@
     class CategoryController extends Controller{
         public function index(){
             $data = [
-                'page' => 'Categorias'
+                'page' => 'Categorias',
+                'scriptPage' => 'Category'
             ];
             $this->loadTemplate('Categories', $data);
         }
         public function addScreen(){
             $data = [
-                'page' => 'Categorias'
+                'page' => 'Adicionar Categorias',
+                'scriptPage' => 'Category'
+
             ];
             $this->loadTemplate('AddCategory', $data);
         }
