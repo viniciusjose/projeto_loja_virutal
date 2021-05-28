@@ -32,7 +32,7 @@
         public function addScreen(){
             $data = [
                 'page' => 'Adicionar Categorias',
-                'scriptPage' => 'Category'
+                'scriptPage' => 'AddCategoryScreen'
             ];
             $this->loadTemplate('AddCategory', $data);
         }
@@ -60,6 +60,21 @@
                 echo json_encode($status);
             }
             
+        }
+        /**
+         * Função de listagem de categorias
+         *
+         * Função responsável por receber a requisição ajax e retornar em json
+         * todas os dados de categorias cadastradas no banco de dados.
+         *
+         * @return JSON
+         **/
+        public function listCategory()
+        {
+            $jsonCategory = [];    
+            $cateRepo = new CategoryRepository();
+            $dataCategory = $cateRepo->listCategory();    
+            echo json_encode($dataCategory, JSON_UNESCAPED_UNICODE);
         }
         
     }

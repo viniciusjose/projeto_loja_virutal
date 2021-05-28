@@ -24,6 +24,25 @@
             }
         }
         /**
+         * Listagem de todas as categorias cadastradas no banco de dados
+         *
+         * Método responsável por realizar a consulta de todas categorias cadastradas
+         * no banco de dados e retornar um array para a classe controller;
+         *
+         * @return Array
+         **/
+        public function listCategory()
+        {   
+            $allCategory = [];
+            $sql = "SELECT * FROM category";
+            $sql = $this->db->prepare($sql);
+            $sql->execute();
+            if($sql->rowCount() > 0){
+                $allCategory = $sql->fetchAll();
+            }
+            return $allCategory;
+        }
+        /**
          * Checagem de categorias já cadastradas
          *
          * Realiza a verificação de categorias com nome e código
@@ -42,12 +61,7 @@
                 return true;
             }
         }
-        public function updateProduct(){
-
-        }
-        public function deleteProduct(){
-
-        }
+        
 
     }
 ?>

@@ -2,13 +2,15 @@
     class ProductController extends Controller{
         public function index(){
             $data = [
-                'page' => 'Produtos'
+                'page' => 'Produtos',
+                'scriptPage' => 'Product'
             ];
             $this->loadTemplate('Products', $data);
         }
         public function addScreen(){
             $data = [
-                'page' => 'Adicionar Produtos'
+                'page' => 'Adicionar Produtos',
+                'scriptPage' => 'AddProductScreen'
             ];
             $this->loadTemplate('AddProduct', $data);
         }
@@ -37,7 +39,7 @@
                 //Função upload é executada para pegar a imagem selecionada pelo usuário e retornar o caminho da imagem
                 $imageDirectory = $image->AddProductImage();
                 if($prodRepo->createProduct($sku, $name, $price, $description, $imageDirectory, $quantity, $category)){
-                    return $status;
+                    return json_encode($status);
                 }
             }
         }

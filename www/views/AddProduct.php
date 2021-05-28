@@ -22,6 +22,9 @@
         </div>
         <div class="input-field">
           <label for="category" class="label">Categoria</label>
+          <select multiple  required name='category[]' id='category' required class='input-text'>
+          
+          </select>
         </div>
         <div class="input-field">
           <label for="description" class="label">Descrição</label>
