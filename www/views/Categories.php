@@ -7,8 +7,7 @@
     </div>
     <form  method="GET">
       <div class="input-field">
-        <label for="search" class="label">Pesquisar por nome de categoria:</label>
-        <input type="search" id="search" name="search" class="input-text" /> 
+        <input type="search" id="search" name="search" class="input-text" placeholder = "Pesquisar por nome de categoria ou código"/> 
         <input class="btn-submit btn-action" type="submit" value="Pesquisar" />
       </div>
     </form>
