@@ -11,7 +11,6 @@
             $data = [
                 'page' => 'Adicionar Categorias',
                 'scriptPage' => 'Category'
-
             ];
             $this->loadTemplate('AddCategory', $data);
         }

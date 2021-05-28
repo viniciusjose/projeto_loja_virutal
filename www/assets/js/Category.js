@@ -1,15 +1,25 @@
 $(document).ready(function () {
-    /*Ação para cadastro de categorias ao banco de dados*/
+    /**
+     * Captura do envio de submit do formulário #form-add-category
+     * e chamada da função que realiza a persistência dos dados de
+     * categoria.
+     */
     $('#form-add-category').on('submit', function(e){
         e.preventDefault();
         var codCat = $('#category-code').val();
         var nameCat = $('#category-name').val();
         insertCategory(codCat,nameCat)
-       
-        
     });
 });
-
+/**
+ * Requisição ajax com dados das categorias.
+ * 
+ * Função que executa a requisição ajax com os dados inseridos pelo usuário 
+ * para o método addCategory no arquivo CategoryController.
+ * 
+ * @param {*} codCat 
+ * @param {*} nameCat 
+ */
 function insertCategory(codCat, nameCat){
 
     $.ajax({
