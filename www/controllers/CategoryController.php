@@ -15,7 +15,7 @@
         public function addCategory(){
             $status = true;
             $cateRepo = new CategoryRepository();
-            $name = ucfirst(utf8_encode(addslashes($_POST['category-name'])));
+            $name = ucfirst(addslashes($_POST['category-name']));
             $cod = strtoupper($_POST['category-code']);
             if($cateRepo->insertCategory($cod, $name)){
                 echo json_encode($status);
