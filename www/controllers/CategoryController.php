@@ -1,6 +1,6 @@
 <?php
     /**
-     * Realiza todas as implementações das paginas relacionadas a categorias.
+     * Realiza todas as implementações das páginas relacionadas a categorias.
      * 
      * Classe responsável por conter toda a regra de negocio da implementação de
      * categorias no sistema.
