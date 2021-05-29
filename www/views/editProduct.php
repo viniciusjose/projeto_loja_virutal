@@ -39,13 +39,13 @@
           <textarea id="description" class="input-text" required name="description-edit"><?php echo $productValues['description_product'];?></textarea>
         </div>
         <div class="input-field">
-          <label for="image" class="label">Selecione uma imagem</label>
-          <input id="image" type="file" name="arquivo">
+          <label for="image" class="label">Selecionar Imagem</label>
+          <input id="image" type="file" name="arquivo" class="input-text">
           <a href="<?php echo $productValues['image_product']?>">Visualizar Imagem</a> 
         </div>
         <div class="actions-form">
           <a href="products.html" class="action back">Voltar</a>
-          <p>Para adicionar um novo produto, é obrigátorio ter ao menos 1 categoria disponivel para seleção</p>
+          <p>Para adicionar um novo produto, é obrigatório ter ao menos 1 categoria disponível para seleção</p>
           <input class="btn-submit btn-action" type="submit" value="Alterar Produto" />
         </div>
         

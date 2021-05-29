@@ -59,7 +59,6 @@
                 $status = false;
                 echo json_encode($status);
             }
-            
         }
         /**
          * Função de listagem de categorias
@@ -75,7 +74,6 @@
             $cateRepo = new CategoryRepository();
             $dataCategory = $cateRepo->listCategory();    
             echo json_encode($dataCategory, JSON_UNESCAPED_UNICODE);
-        }
-        
+        }  
     }
 ?>
