@@ -2,15 +2,17 @@
     class ProductController extends Controller{
         public function index(){
             $data = [
-                'page' => 'Produtos',
+                'title' => 'Produtos',
+                'BASE_URL' => BASE_URL,
                 'scriptPage' => 'Product'
             ];
             $this->loadTemplate('Products', $data);
         }
         public function addScreen(){
             $data = [
-                'page' => 'Adicionar Produtos',
-                'scriptPage' => 'AddProductScreen'
+                'title' => 'Adicionar Produtos',
+                'BASE_URL' => BASE_URL,
+                'scriptPage' => 'add/AddProductScreen'
             ];
             $this->loadTemplate('AddProduct', $data);
         }

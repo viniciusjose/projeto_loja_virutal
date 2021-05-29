@@ -16,7 +16,8 @@
          **/
         public function index(){
             $data = [
-                'page' => 'Categorias',
+                'title' => 'Categorias',
+                'BASE_URL' => BASE_URL,
                 'scriptPage' => 'Category'
             ];
             $this->loadTemplate('Categories', $data);
@@ -31,8 +32,9 @@
          **/
         public function addScreen(){
             $data = [
-                'page' => 'Adicionar Categorias',
-                'scriptPage' => 'AddCategoryScreen'
+                'title' => 'Adicionar Categoria',
+                'BASE_URL' => BASE_URL,
+                'scriptPage' => 'add/AddCategoryScreen'
             ];
             $this->loadTemplate('AddCategory', $data);
         }

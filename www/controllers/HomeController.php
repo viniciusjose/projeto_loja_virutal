@@ -4,7 +4,9 @@
 
         public function index(){
             $data = [
-                'page' => 'Dashboard'
+                'title' => 'Dashboard',
+                'BASE_URL' => BASE_URL,
+                'scriptPage' => 'Dashboard'
             ];
             $this->loadTemplate('Dashboard', $data);
         }

@@ -3,11 +3,19 @@
 
         public function loadTemplate($viewName, $viewData){
             extract($viewData);
-            require 'views/Template.php';
+            $html = file_get_contents('views/Template.html');
+            $viewData['loadView'] = $this->loadViewInTemplate($viewName, $viewData);
+            foreach($viewData as $key => $value){
+                $html = str_replace('{'.$key.'}', $value, $html);
+            }
+            echo $html;
         }
-        public function loadViewInTemplate($viewName, $viewData = []){
-            extract($viewData);
-            require 'views/'.$viewName.'.php';
+        private function loadViewInTemplate($viewName, $viewData){
+            $htmlView = file_get_contents('views/'.$viewName.'.html');
+            foreach($viewData as $key => $value){
+                $htmlView = str_replace('{'.$key.'}', $value, $htmlView);
+            }
+            return $htmlView;
         }
     }
 ?>
