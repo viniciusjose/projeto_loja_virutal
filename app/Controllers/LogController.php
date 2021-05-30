@@ -1,5 +1,6 @@
 <?php
     namespace Controllers;
+    use \Core\Controller;
     
     class LogController extends Controller{
         public function index(){

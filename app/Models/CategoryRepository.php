@@ -1,5 +1,6 @@
 <?php
     namespace Models;
+    use \Core\Model;
     interface categoryTemplate{
         public function insertCategory($cod, $name);
         public function updateCategory($id, $cod, $name);

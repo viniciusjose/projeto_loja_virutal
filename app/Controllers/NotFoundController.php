@@ -1,5 +1,6 @@
 <?php
     namespace Controllers;
+    use \Core\Controller;
     /**
      * Classe responsável por todas as requisições de log do sistema
      */

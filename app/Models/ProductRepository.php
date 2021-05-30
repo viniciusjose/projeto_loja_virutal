@@ -1,5 +1,6 @@
 <?php
     namespace Models;
+    use \Core\Model;
 
     class ProductRepository extends Model{
 
