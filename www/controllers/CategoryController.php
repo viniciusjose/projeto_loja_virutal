@@ -110,6 +110,9 @@
             $status = false;
             echo json_encode($status);
         }
+        public function removeCategory($id){
+            
+        }
         /**
          * Função de listagem de categorias
          *

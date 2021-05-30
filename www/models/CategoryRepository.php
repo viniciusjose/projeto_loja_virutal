@@ -52,8 +52,21 @@
             $sql->execute();
             return true;
         }
+        /**
+         * Exclusão de categoria.
+         * 
+         * Método responsável por realizar a remoção da categoria selecionada no banco
+         * de dados. 
+         * 
+         * @param Integer $id Id de identificação do produto
+         * @return Boolean
+         */
         public function removeCategory($id){
-            
+            $sql = "DELETE FROM category Where id = :id";
+            $sql = $this->db->prepare($sql);
+            $sql->bindValue(':id', $id);
+            $sql->execute();
+            return true;
         }
         /**
          * Listagem de todas as categorias cadastradas no banco de dados
