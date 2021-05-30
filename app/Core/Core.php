@@ -29,7 +29,7 @@
             }
             $prefix = "\Controllers\\";
             if(!file_exists('Controllers/'.$currentController.'.php') || !method_exists($prefix.$currentController, $currentAction)){
-                $currentController = $prefix.'NotFoundController';
+                $currentController = 'NotFoundController';
                 $currentAction = 'index';
             }
            $currentController = $prefix.$currentController; 
