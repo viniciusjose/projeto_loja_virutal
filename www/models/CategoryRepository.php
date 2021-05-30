@@ -4,6 +4,10 @@
         public function updateCategory();
         public function removeCategory($id);
     }
+    /**
+     * Classe responsável por realizar a persistência dos dados
+     * relacionados a Categoria no banco de dados.
+     */
     class CategoryRepository extends Model implements categoryTemplate{
         /**
          * Método de inserção de novas categorias ao banco de dados.
