@@ -7,7 +7,7 @@ services:
         ports:
             - '8000:80'
         volumes: 
-            - ./www:/var/www/html
+            - ./app:/var/www/html
         networks: 
             - default
     db:
