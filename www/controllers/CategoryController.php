@@ -38,7 +38,7 @@
             ];
             $this->loadTemplate('AddCategory', $data);
         }
-         /**
+        /**
          * Página de edição de categorias da aplicação.
          *
          * Método responsável por realizar a chamada do template e desenhar a pagina de edição
@@ -47,8 +47,7 @@
          * @param Integer $id número de identificação da categoria selecionada.
          * @var Array $data Todos os dados que serão fornecidos para o front-end da aplicação
          **/
-        public function editScreen($id)
-        {   
+        public function editScreen($id){
             $id = intval($id);
             $cateRepo = new CategoryRepository();
             $dataCategory = $cateRepo->listCategoryById($id);  
@@ -80,10 +79,36 @@
             $cod = strtoupper($_POST['category-code']);
             if($cateRepo->insertCategory($cod, $name)){
                 echo json_encode($status);
-            }else{ 
-                $status = false;
+                return;
+            } 
+            $status = false;
+            echo json_encode($status);  
+        }
+        /**
+         * Update de categorias
+         *
+         * Método responsável por receber a requisição ajax do front-end
+         * com as informações a serem alteradas no banco de dados, e em
+         * posse das mesmas requisita o método que altera as informações no banco.
+         *
+         * @param Integer $id Id de identificação da categoria recebido pela requisição ajax.
+         * @var Boolean $status Variável responsável por receber o status da transação.
+         * @var String $name Nome da categoria.
+         * @var String $cod Código da categoria.
+         * @return Json
+         **/
+        public function updateCategory($id){
+            $status = true;
+            $cateRepo = new CategoryRepository();
+            $id = addslashes($id);
+            $name = ucfirst(addslashes($_POST['category-name']));
+            $cod = strtoupper($_POST['category-code']);
+            if($cateRepo->updateCategory($id ,$cod, $name)){
                 echo json_encode($status);
-            }
+                return;
+            } 
+            $status = false;
+            echo json_encode($status);
         }
         /**
          * Função de listagem de categorias
@@ -93,8 +118,7 @@
          *
          * @return JSON
          **/
-        public function listCategory()
-        {
+        public function listCategory(){
             $jsonCategory = [];    
             $cateRepo = new CategoryRepository();
             $dataCategory = $cateRepo->listCategory(); 

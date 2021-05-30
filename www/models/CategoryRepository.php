@@ -1,7 +1,7 @@
 <?php
     interface categoryTemplate{
         public function insertCategory($cod, $name);
-        public function updateCategory();
+        public function updateCategory($id, $cod, $name);
         public function removeCategory($id);
     }
     /**
@@ -32,13 +32,29 @@
                 return true;
             }
         }
-        public function updateCategory(){
-
+        /**
+         * Método de atualização de categorias cadastradas no banco de dados.
+         *
+         * Método recebe a requisição do controller com os dados da categoria
+         * e realiza a ação de update das informações no banco de dados.
+         *
+         * @param Integer $id Id de identificação da categoria.
+         * @param String $cod Código da categoria.
+         * @param String $name Nome da categoria.
+         * @return Boolean
+         **/
+        public function updateCategory($id, $cod, $name){
+            $sql = "UPDATE category SET cod_category = :cod_cat, name_category = :name_cat WHERE id = :id";
+            $sql = $this->db->prepare($sql);
+            $sql->bindValue(":cod_cat", $cod);
+            $sql->bindValue(":name_cat", $name);
+            $sql->bindValue(":id", $id);
+            $sql->execute();
+            return true;
         }
         public function removeCategory($id){
             
         }
-
         /**
          * Listagem de todas as categorias cadastradas no banco de dados
          *
@@ -64,9 +80,9 @@
          * Realiza a verificação de categorias com nome e código
          * de categoria já existentes no banco de dados.
          *
-         * @param Type $cod Código da categoria.
-         * @param Type $name Nome da categoria.
-         * @return type Boolean
+         * @param Integer $cod Código da categoria.
+         * @param String $name Nome da categoria.
+         * @return Boolean
          **/
         private function checkCategory($cod, $name){
             $sql="SELECT cod_category FROM category WHERE (cod_category = '$cod' OR name_category = '$name')";

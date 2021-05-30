@@ -17,8 +17,8 @@ $(document).ready(function () {
  * Função que executa a requisição ajax com os dados inseridos pelo usuário 
  * para o método addCategory no arquivo CategoryController.
  * 
- * @param {*} codCat 
- * @param {*} nameCat 
+ * @param {String} codCat 
+ * @param {String} nameCat 
  */
 function insertCategory(codCat, nameCat){
 

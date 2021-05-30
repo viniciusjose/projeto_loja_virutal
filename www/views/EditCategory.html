@@ -2,14 +2,17 @@
   <!-- Main Content -->
   <main class="content">
     <h1 class="title new-item">Editar Categoria</h1>
-    <form method="POST">
+    <div id="alert">
+      
+    </div>
+    <form method="POST" id ="form-edit-category">
       <div class="input-field">
         <label for="category-code" class="label">Código de categoria</label>
-        <input type="text" id="category-code" name="category-code-edit" class="input-text" value="{category-code}"/>
+        <input type="text" id="category-code" required name="category-code" class="input-text" value="{category-code}"/>
       </div>
       <div class="input-field">
         <label for="category-name" class="label">Nome de categoria</label>
-        <input type="text" id="category-name"  name="category-name-edit" class="input-text" value="{category-name}"/>
+        <input type="text" id="category-name"  required name="category-name" class="input-text" value="{category-name}"/>
       </div>
       <div class="actions-form">
         <a href="{BASE_URL}Category" class="action back">Voltar</a>

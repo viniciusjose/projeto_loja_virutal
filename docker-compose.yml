@@ -16,7 +16,8 @@ services:
         restart: always
         ports: 
             - '3306:3306'
-        environment: 
+        environment:
+            TZ: America/Sao_Paulo 
             MYSQL_DATABASE: projeto_webjump
             MYSQL_USER: webjump
             MYSQL_PASSWORD: 676247307f67b84210663f19ff9878cd
