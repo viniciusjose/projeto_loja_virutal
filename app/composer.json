@@ -1,0 +1,24 @@
+{
+    "name": "viniciusjose/projeto_webjump",
+    "description": "Projeto para aplicação de vaga back-end PHP",
+    "minimum-stability": "stable",
+    "license": "MIT",
+    "authors": [
+      {
+        "name": "Vinícius José",
+        "email": "vinicius.jsilv@gmail.com",
+        "role": "Developer"
+      }
+    ],
+    "config":{
+        "vendor-dir": "vendor"
+    },
+    "autoload": {
+        "psr-4": {
+          "Core\\":"Core/",
+          "Controllers\\":"Controllers/",
+          "Models\\":"Models/",
+          "Views\\":"Views/"
+        }
+    }
+  }

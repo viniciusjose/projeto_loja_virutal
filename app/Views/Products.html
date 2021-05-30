@@ -1,0 +1,43 @@
+
+  <!-- Main Content -->
+  <main class="content">
+    
+    <div class="header-list-page">
+      <h1 class="title">Produtos</h1>
+      <a href="{BASE_URL}Product/addScreen" class="btn-action">Adicionar novo produto</a>
+    </div>
+    <form  method="GET">
+      <div class="input-field">
+        <input type="search" id="search" name="search" class="input-text" placeholder = "Pesquisar por nome de produto ou categoria"/> 
+        <input class="btn-submit btn-action" type="submit" value="Pesquisar" />
+      </div>
+    </form>
+
+    <table class="data-grid">
+      <tr class="data-row">
+        <th class="data-grid-th">
+            <span class="data-grid-cell-content">Nome</span>
+        </th>
+        <th class="data-grid-th">
+            <span class="data-grid-cell-content">SKU</span>
+        </th>
+        <th class="data-grid-th">
+            <span class="data-grid-cell-content">Preço</span>
+        </th>
+        <th class="data-grid-th">
+            <span class="data-grid-cell-content">Quantidade</span>
+        </th>
+        <th class="data-grid-th">
+            <span class="data-grid-cell-content">Categorias</span>
+        </th>
+        <th class="data-grid-th">
+          <span class="data-grid-cell-content">Imagem</span>
+        </th>
+
+        <th class="data-grid-th">
+            <span class="data-grid-cell-content">Ações</span>
+        </th>
+      </tr>
+    </table>
+  </main>
+  <!-- Main Content -->
