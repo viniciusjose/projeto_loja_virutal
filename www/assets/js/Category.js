@@ -23,7 +23,7 @@ function showCategory(){
                             <td class='data-grid-td'>\n\
                                 <div class='actions'>\n\
                                     <div class='action edit'>\n\
-                                        <span><a href=''>Editar</a></span>\n\
+                                        <span><a href='Category/EditScreen/"+json[i].id+"'>Editar</a></span>\n\
                                     </div>\n\
                                     <div class='action delete'>\n\
                                         <span><a href=''>Deletar</a></span>\n\

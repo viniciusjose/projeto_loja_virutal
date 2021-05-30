@@ -1,5 +1,10 @@
 <?php
-    class CategoryRepository extends Model{
+    interface categoryTemplate{
+        public function insertCategory($cod, $name);
+        public function updateCategory();
+        public function removeCategory($id);
+    }
+    class CategoryRepository extends Model implements categoryTemplate{
         /**
          * Método de inserção de novas categorias ao banco de dados.
          *
@@ -23,11 +28,18 @@
                 return true;
             }
         }
+        public function updateCategory(){
+
+        }
+        public function removeCategory($id){
+            
+        }
+
         /**
          * Listagem de todas as categorias cadastradas no banco de dados
          *
          * Método responsável por realizar a consulta de todas categorias cadastradas
-         * no banco de dados e retornar um array para a classe controller;
+         * no banco de dados e retornar um array para a classe controller.
          *
          * @return Array
          **/
@@ -61,5 +73,22 @@
                 return true;
             }
         }
+        /**
+         * Listagem da categoria selecionada pelo usuário para edição.
+         * Método responsável por realizar a consulta da categoria selecionada pelo
+         * usuário e retornar um array com todos os dados da categoria.
+         * 
+         * @param Integer $id número de identificação da categoria selecionada.
+         * @return Array
+         **/
+        public function listCategoryById($id){
+            $sql = 'SELECT cod_category, name_category FROM category WHERE id = :id';
+            $sql = $this->db->prepare($sql);
+            $sql->bindValue(':id', $id);
+            $sql->execute();
+            if($sql->rowCount() > 0){
+                return $sql->fetch();
+            } 
+        } 
     }
 ?>

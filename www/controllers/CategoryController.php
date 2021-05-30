@@ -38,6 +38,29 @@
             ];
             $this->loadTemplate('AddCategory', $data);
         }
+         /**
+         * Página de edição de categorias da aplicação.
+         *
+         * Método responsável por realizar a chamada do template e desenhar a pagina de edição
+         * de novas categorias no sistema e imprimir os dados da categoria cadastradas selecionada.
+         *
+         * @param Integer $id número de identificação da categoria selecionada.
+         * @var Array $data Todos os dados que serão fornecidos para o front-end da aplicação
+         **/
+        public function editScreen($id)
+        {   
+            $id = intval($id);
+            $cateRepo = new CategoryRepository();
+            $dataCategory = $cateRepo->listCategoryById($id);  
+            $data = [
+                'title' => 'Editar Categoria',
+                'BASE_URL' => BASE_URL,
+                'scriptPage' => 'edit/EditCategoryScreen',
+                'category-code' => $dataCategory['cod_category'],
+                'category-name' => $dataCategory['name_category']
+            ];
+            $this->loadTemplate('EditCategory', $data);
+        }
         /**
          * Método de persistência de novas categorias ao banco de dados.
          *
@@ -74,8 +97,8 @@
         {
             $jsonCategory = [];    
             $cateRepo = new CategoryRepository();
-            $dataCategory = $cateRepo->listCategory();    
+            $dataCategory = $cateRepo->listCategory(); 
             echo json_encode($dataCategory, JSON_UNESCAPED_UNICODE);
-        }  
+        } 
     }
 ?>
