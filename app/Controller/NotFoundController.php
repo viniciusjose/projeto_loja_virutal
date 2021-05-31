@@ -1,7 +1,7 @@
 <?php
-    namespace Controllers;
+    namespace MyApp\Controller;
 
-    use \Core\Controller;
+    use MyApp\Core\Controller;
     /**
      * Classe responsável por todas as requisições de log do sistema
      */

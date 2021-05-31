@@ -1,7 +1,7 @@
 <?php
-    namespace Models;
+    namespace MyApp\Model;
 
-    use \Core\Model;
+    use MyApp\Core\Model;
     
     interface categoryTemplate
     {

@@ -18,10 +18,7 @@
     },
     "autoload": {
         "psr-4": {
-          "Core\\":"Core/",
-          "Controllers\\":"Controllers/",
-          "Models\\":"Models/",
-          "Views\\":"Views/"
+          "MyApp\\":"../app/"
         },
         "files": [
           "Config/Config.php"

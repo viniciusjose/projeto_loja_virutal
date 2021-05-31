@@ -1,5 +1,5 @@
 <?php
-    namespace Controllers;
+    namespace MyApp\Controller;
     
     class ImageController
     {

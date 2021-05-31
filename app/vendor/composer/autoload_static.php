@@ -8,41 +8,19 @@ class ComposerStaticInit6a3a7941d3be58e83265a60c56e6f099
 {
     public static $files = array (
         '01f631248269c0e97a1412726e0929f0' => __DIR__ . '/../..' . '/Config/Config.php',
-        'cad025f19b417b5dd1dbd772be56da40' => __DIR__ . '/../..' . '/Config/Environment.php',
     );
 
     public static $prefixLengthsPsr4 = array (
-        'V' => 
-        array (
-            'Views\\' => 6,
-        ),
         'M' => 
         array (
-            'Models\\' => 7,
-        ),
-        'C' => 
-        array (
-            'Core\\' => 5,
-            'Controllers\\' => 12,
+            'MyApp\\' => 6,
         ),
     );
 
     public static $prefixDirsPsr4 = array (
-        'Views\\' => 
+        'MyApp\\' => 
         array (
-            0 => __DIR__ . '/../..' . '/Views',
-        ),
-        'Models\\' => 
-        array (
-            0 => __DIR__ . '/../..' . '/Models',
-        ),
-        'Core\\' => 
-        array (
-            0 => __DIR__ . '/../..' . '/Core',
-        ),
-        'Controllers\\' => 
-        array (
-            0 => __DIR__ . '/../..' . '/Controllers',
+            0 => __DIR__ . '/../..' . '/',
         ),
     );
 

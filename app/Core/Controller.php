@@ -1,5 +1,5 @@
 <?php
-    namespace Core;
+    namespace MyApp\Core;
 
     /**
      * Classe responsável por requisitar a view selecionada pelo controller
@@ -19,7 +19,7 @@
         public function loadTemplate($viewName, $viewData)
         {
             extract($viewData);
-            $html = file_get_contents('Views/Template.html');
+            $html = file_get_contents('View/Template.html');
             $viewData['loadView'] = $this->loadViewInTemplate($viewName, $viewData);
             //Substituição dos dados tratados pelo PHP por todas as chaves configuradas no HTML
             foreach($viewData as $key => $value){
@@ -41,7 +41,7 @@
          **/
         private function loadViewInTemplate($viewName, $viewData)
         {
-            $htmlView = file_get_contents('Views/'.$viewName.'.html');
+            $htmlView = file_get_contents('View/'.$viewName.'.html');
             //Substituição dos dados tratados pelo PHP por todas as chaves configuradas no HTML
             foreach($viewData as $key => $value){
                 $htmlView = str_replace('{'.$key.'}', $value, $htmlView);

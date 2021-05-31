@@ -1,7 +1,7 @@
 <?php
-    namespace Models;
+    namespace MyApp\Models;
 
-    use \Core\Model;
+    use MyApp\Core\Model;
 
     class ProductRepository extends Model
     {

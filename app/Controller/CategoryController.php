@@ -1,8 +1,9 @@
 <?php
 
-    namespace Controllers;
+    namespace MyApp\Controller;
 
-    use \Core\Controller;
+    use MyApp\Core\Controller;
+    use MyApp\Model\CategoryRepository;
 
     /**
      * Realiza todas as implementações das páginas relacionadas a categorias.
@@ -58,7 +59,7 @@
         public function editScreen($id)
         {
             $id = intval($id);
-            $cateRepo = new \Models\CategoryRepository();
+            $cateRepo = new CategoryRepository();
             $dataCategory = $cateRepo->listCategoryById($id);  
             $data = [
                 'title' => 'Editar Categoria',
@@ -84,7 +85,7 @@
         public function addCategory()
         {
             $status = true;
-            $cateRepo = new \Models\CategoryRepository();
+            $cateRepo = new CategoryRepository();
             $name = ucfirst(addslashes($_POST['category-name']));
             $cod = strtoupper($_POST['category-code']);
             if ($cateRepo->insertCategory($cod, $name)) {
@@ -110,7 +111,7 @@
         public function updateCategory($id)
         {
             $status = true;
-            $cateRepo = new \Models\CategoryRepository();
+            $cateRepo = new CategoryRepository();
             $id = addslashes($id);
             $name = ucfirst(addslashes($_POST['category-name']));
             $cod = strtoupper($_POST['category-code']);
@@ -135,7 +136,7 @@
         public function listCategory()
         {
             $jsonCategory = [];    
-            $cateRepo = new \Models\CategoryRepository();
+            $cateRepo = new CategoryRepository();
             $dataCategory = $cateRepo->listCategory(); 
             echo json_encode($dataCategory, JSON_UNESCAPED_UNICODE);
         } 

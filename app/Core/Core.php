@@ -1,5 +1,5 @@
 <?php
-    namespace Core;
+    namespace MyApp\Core;
     
     class Core
     {
@@ -29,12 +29,12 @@
                $currentController = 'HomeController';
                $currentAction = 'index';
             }
-            $prefix = "\Controllers\\";
-            if(!file_exists('Controllers/'.$currentController.'.php') || !method_exists($prefix.$currentController, $currentAction)){
+            $namespace = "\MyApp\Controller\\";
+            if(!file_exists('Controller/'.$currentController.'.php') || !method_exists($namespace.$currentController, $currentAction)){
                 $currentController = 'NotFoundController';
                 $currentAction = 'index';
             }
-           $currentController = $prefix.$currentController; 
+           $currentController = $namespace.$currentController; 
            $controller = new $currentController();
            call_user_func_array(array($controller, $currentAction),$params);
         }

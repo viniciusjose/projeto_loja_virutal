@@ -1,7 +1,10 @@
 <?php
 
-session_start();
-require __DIR__."/vendor/autoload.php";
+    session_start();
 
-$core = new Core\Core();
-$core->run();
+    require __DIR__."/vendor/autoload.php";
+
+    use MyApp\Core\Core;
+
+    $core = new Core();
+    $core->run();

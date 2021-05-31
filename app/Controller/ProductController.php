@@ -1,7 +1,8 @@
 <?php
-    namespace Controllers;
+    namespace MyApp\Controller;
 
-    use \Core\Controller;
+    use MyApp\Core\Controller;
+    use MyApp\Model\ProductRepository;
     
     /**
      * Classe responsável por todas as requisições de produtos do sistema.

@@ -7,5 +7,4 @@ $baseDir = dirname($vendorDir);
 
 return array(
     '01f631248269c0e97a1412726e0929f0' => $baseDir . '/Config/Config.php',
-    'cad025f19b417b5dd1dbd772be56da40' => $baseDir . '/Config/Environment.php',
 );
