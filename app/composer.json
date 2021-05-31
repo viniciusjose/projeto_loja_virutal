@@ -20,5 +20,8 @@
           "Models\\":"Models/",
           "Views\\":"Views/"
         }
+    },
+    "require": {
+
     }
   }

@@ -1,8 +1,10 @@
 <?php
     namespace Models;
+
     use \Core\Model;
 
-    class ProductRepository extends Model{
+    class ProductRepository extends Model
+    {
 
         /**
          * Inserção de produto.
@@ -12,7 +14,8 @@
          * @param Type $skuProd, $name_prod, $price_prod, $desc_prod, $image_prod, $qtd_prod, $id_categorias
          * @return type boolean
          **/
-        public function insertProduct($skuProd, $name_prod, $price_prod, $desc_prod, $image_prod, $qtd_prod, $id_categorias){
+        public function insertProduct($skuProd, $name_prod, $price_prod, $desc_prod, $image_prod, $qtd_prod, $id_categorias)
+        {
             $id_product;
             $sql = "INSERT INTO product (sku, name_product, price, description_product, image_product, quantity) VALUES (:sku, :name_product, :price, :description_product, :image_product, :quantity)";
             $sql = $this->db->prepare($sql);
@@ -39,4 +42,3 @@
         }
         
     }
-?>

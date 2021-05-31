@@ -1,10 +1,13 @@
 <?php
     namespace Controllers;
+
     use \Core\Controller;
+    
     /**
      * Classe responsável por todas as requisições de produtos do sistema.
      */
-    class ProductController extends Controller{
+    class ProductController extends Controller
+    {
         /**
          * Método de renderização da página principal de produtos.
          *
@@ -13,7 +16,8 @@
          *
          * @var Array $data Informações que serão inseridas na view Products.html
          **/
-        public function index(){
+        public function index()
+        {
             $data = [
                 'title' => 'Produtos',
                 'BASE_URL' => BASE_URL,
@@ -29,7 +33,8 @@
          *
          * @var Array $data Informações que serão inseridas na view AddProduct.html
          **/
-        public function addScreen(){
+        public function addScreen()
+        {
             $data = [
                 'title' => 'Adicionar Produtos',
                 'BASE_URL' => BASE_URL,
@@ -40,8 +45,8 @@
         /**
          * Método de renderização da página de Logs
          *
-         * Responsável por requisitar para a camada view o conteúdo a ser exibido
-         * na tela de Logs do sistema.
+         * Responsável por requisitar para a camada view o conteúdo a ser
+         * exibido na tela de Logs do sistema.
          *
          * @var Boolean $status Status da transação com o banco de dados para ser
          * retornado em JSON para a requisição AJAX
@@ -55,12 +60,16 @@
          * @var String $image Caminho do arquivo onde a imagem foi salva.
          * @var String $description Descrição completa do produto.
          **/
-        public function addProduct(){
+        public function addProduct()
+        {
             $status = true;
             $prodRepo = new ProductRepository();
             $image = new ImageController();
-            //verificação dos campos digitados pelo usuário e inserção do produto ao banco de dados
-            if((isset($_POST['sku']) && !empty($_POST['sku'])) &&
+            /**
+             * verificação dos campos digitados pelo usuário e inserção
+             * do produto ao banco de dados.
+             */
+            if ((isset($_POST['sku']) && !empty($_POST['sku'])) &&
             (isset($_POST['name']) && !empty($_POST['name'])) &&
             (isset($_POST['price']) && !empty($_POST['price'])) &&
             (isset($_POST['quantity']) && !empty($_POST['quantity'])) &&
@@ -69,19 +78,22 @@
                 
                 $sku = addslashes(strtoupper($_POST['sku']));
                 $name = addslashes(ucwords($_POST['name']));
-                $price = addslashes(floatval(str_replace(",", ".", $_POST['price'])));
+                $price = addslashes(
+                    floatval(str_replace(",", ".", $_POST['price']))
+                );
                 $category = $_POST['category'];
                 $quantity = addslashes(intval(intval($_POST['quantity'])));
                 $image = $_POST['category'];
                 $description = addslashes(ucfirst($_POST['description']));
 
-                //Função upload é executada para pegar a imagem selecionada pelo usuário e retornar o caminho da imagem
+                /**Função upload é executada para pegar a imagem selecionada 
+                 * pelo usuário e retornar o caminho da imagem
+                 */
                 $imageDirectory = $image->AddProductImage();
-                if($prodRepo->createProduct($sku, $name, $price, $description, $imageDirectory, $quantity, $category)){
+                if ($prodRepo->createProduct($sku, $name, $price, $description,
+                 $imageDirectory, $quantity, $category)) {
                     return json_encode($status);
                 }
             }
         }
     }
-   
-?>

@@ -1,9 +1,10 @@
 <?php
     namespace Controllers;
     
-    class ImageController{
-        
-        public function AddProductImage() :string{
+    class ImageController
+    {
+        public function AddProductImage() :string
+        {
             // script de verificação de imagem
             if ( isset( $_FILES[ 'arquivo' ][ 'name' ] ) && $_FILES[ 'arquivo' ][ 'error' ] == 0 ) {
 
@@ -43,7 +44,8 @@
             
             return $directory;
         }
-        public function UpdateProductImage() :string{
+        public function UpdateProductImage() :string
+        {
             // script de verificação de imagem
 
                 $arquivo_tmp = $_FILES[ 'arquivo' ][ 'tmp_name' ];
@@ -81,5 +83,3 @@
             return $directory;
         }
     }
-
-?>

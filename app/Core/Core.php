@@ -1,8 +1,10 @@
 <?php
     namespace Core;
     
-    class Core{
-        public function run(){
+    class Core
+    {
+        public function run()
+        {
            $url = '/';
            if(isset($_GET['url'])){
             $url .= $_GET['url'];
@@ -37,4 +39,3 @@
            call_user_func_array(array($controller, $currentAction),$params);
         }
     }
-?>

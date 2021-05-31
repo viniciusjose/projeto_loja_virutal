@@ -1,11 +1,13 @@
 <?php
     require 'Environment.php';
+    
     $config = array();
     if(ENVIRONMENT == 'development'){
         /*
         * Configuração padrão de conexão para
         */
-        define("BASE_URL", "http://localhost:8000/");//URL padrão para utilização em localhost.
+        //URL padrão para utilização em localhost.
+        define("BASE_URL", "http://localhost:8000/");
         $config['db_driver'] = 'mysql';
         $config['dbname'] = 'projeto_webjump';
         $config['host'] = 'db';
@@ -24,8 +26,8 @@
     }
     global $db;
     try{
-        $db = new PDO($config['db_driver'].":dbname=".$config['dbname'].";host=".$config['host'], $config['dbuser'], $config['dbpass']);
+        $db = new PDO($config['db_driver'].":dbname=".$config['dbname'].";
+        host=".$config['host'], $config['dbuser'], $config['dbpass']);
     }catch(PDOException $e){
         echo "Erro de conexão ao banco de dados <br>".$e->getMessage();
     }
-?> 

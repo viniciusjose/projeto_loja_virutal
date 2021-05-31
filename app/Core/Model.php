@@ -1,7 +1,8 @@
 <?php
     namespace Core;
     
-    class Model{
+    class Model
+    {
 
         protected $db;
         
@@ -10,4 +11,3 @@
             $this->db = $db;
         }
     }
-?>
