@@ -122,8 +122,18 @@
             $status = false;
             echo json_encode($status);
         }
+        /**
+         * Exclusão de categorias.
+         *
+         * Método responsável por receber a requisição ajax do Front-end e chamar
+         * o método auxiliar de exclusão de categorias no banco de dados.
+         *
+         * @param Integer $id Id da categoria recebida pela requisição ajax.
+         **/
         public function removeCategory($id)
         {
+            $cateRepo = new CategoryRepository();
+            $cateRepo->removeCategory($id);
         }
         /**
          * Função de listagem de categorias

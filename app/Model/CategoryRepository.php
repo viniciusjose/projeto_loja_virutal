@@ -66,7 +66,6 @@
          * de dados. 
          * 
          * @param Integer $id Id de identificação do produto
-         * @return Boolean
          */
         public function removeCategory($id)
         {
@@ -74,7 +73,6 @@
             $sql = $this->db->prepare($sql);
             $sql->bindValue(':id', $id);
             $sql->execute();
-            return true;
         }
         /**
          * Listagem de todas as categorias cadastradas no banco de dados
