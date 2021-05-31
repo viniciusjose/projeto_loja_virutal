@@ -13,15 +13,18 @@
     "config":{
         "vendor-dir": "vendor"
     },
+    "require": {
+
+    },
     "autoload": {
         "psr-4": {
           "Core\\":"Core/",
           "Controllers\\":"Controllers/",
           "Models\\":"Models/",
           "Views\\":"Views/"
-        }
-    },
-    "require": {
-
+        },
+        "files": [
+          "Config/Config.php"
+        ]
     }
   }

@@ -1,6 +1,5 @@
 <?php
-    require 'Environment.php';
-    
+    require_once 'Environment.php';
     $config = array();
     if(ENVIRONMENT == 'development'){
         /*
