@@ -3,6 +3,7 @@
 
     use MyApp\Core\Controller;
     use MyApp\Model\ProductRepository;
+    use MyApp\Controller\ImageController;
     
     /**
      * Classe responsável por todas as requisições de produtos do sistema.
@@ -73,19 +74,19 @@
             $price = addslashes(
                 floatval(str_replace(",", ".", $_POST['price']))
             );
-            $category = $_POST['category'];
             $quantity = addslashes(intval(intval($_POST['quantity'])));
-            $image = $_POST['category'];
+            $category = $_POST['category'];
             $description = addslashes(ucfirst($_POST['description']));
 
             /**Função upload é executada para pegar a imagem selecionada 
              * pelo usuário e retornar o caminho da imagem
              */
             $imageDirectory = $image->AddProductImage();
-            if ($prodRepo->createProduct($sku, $name, $price, $description,
+            
+            if ($prodRepo->insertProduct($sku, $name, $price, $description,
                 $imageDirectory, $quantity, $category)) {
                 return json_encode($status);
             }
-            }
+            
         }
     }

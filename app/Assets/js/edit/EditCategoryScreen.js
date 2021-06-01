@@ -38,7 +38,15 @@ function updateCategory(cod_category, name_category){
                     $('#alert').fadeIn().html('');
                     $('#alert').removeClass('success-msg');
                 }, 5000)
+                return;
             }
+            $('#alert').addClass('alert-msg');
+                $('#alert').fadeIn().html('Código ou nome de categorias existentes.');
+                setTimeout(function(){
+                    $('#alert').fadeOut('Slow')
+                    $('#alert').fadeIn().html('');
+                    $('#alert').removeClass('alert-msg');
+                }, 5000)
         }
     });
 }

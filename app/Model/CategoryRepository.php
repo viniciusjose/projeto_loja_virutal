@@ -51,13 +51,16 @@
          **/
         public function updateCategory($id, $cod, $name)
         {
-            $sql = "UPDATE category SET cod_category = :cod_cat, name_category = :name_cat WHERE id = :id";
-            $sql = $this->db->prepare($sql);
-            $sql->bindValue(":cod_cat", $cod);
-            $sql->bindValue(":name_cat", $name);
-            $sql->bindValue(":id", $id);
-            $sql->execute();
-            return true;
+            if($this->checkCategory($cod, $name) == true){
+                $sql = "UPDATE category SET cod_category = :cod_cat, name_category = :name_cat WHERE id = :id";
+                $sql = $this->db->prepare($sql);
+                $sql->bindValue(":cod_cat", $cod);
+                $sql->bindValue(":name_cat", $name);
+                $sql->bindValue(":id", $id);
+                $sql->execute();
+                return true;
+            }
+            return false;
         }
         /**
          * Exclusão de categoria.

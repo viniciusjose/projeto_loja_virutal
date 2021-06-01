@@ -1,7 +1,8 @@
 <?php
-    namespace MyApp\Models;
+    namespace MyApp\Model;
 
     use MyApp\Core\Model;
+
 
     class ProductRepository extends Model
     {
@@ -39,34 +40,36 @@
                 :image_product,
                 :quantity
             )";
-            $sql = $this->db->prepare($sql);
-            $sql->bindValue(":sku",$skuProd);
-            $sql->bindValue(":name_product",$name_prod);
-            $sql->bindValue(":price", $price_prod);
-            $sql->bindValue(":description_product",$desc_prod);
-            $sql->bindValue(":image_product",$image_prod);
-            $sql->bindValue(":quantity",$qtd_prod);
-            $sql->execute();
-            $id_prod = intval($database->lastInsertId());    
-            $this->insertCategoryInProduct($id_prod, $id_categories);
+            $stmt = $this->db->prepare($sql);
+            $stmt->bindValue(":sku",$skuProd);
+            $stmt->bindValue(":name_product",$name_prod);
+            $stmt->bindValue(":price", $price_prod);
+            $stmt->bindValue(":description_product",$desc_prod);
+            $stmt->bindValue(":image_product",$image_prod);
+            $stmt->bindValue(":quantity",$qtd_prod);
+            $stmt->execute();
+            $id_prod = intval($this->db->lastInsertId());
+            for ($i = 0; $i < count($id_categories); $i++) {
+                $this->insertCategoryInProduct($id_prod, $id_categories[$i]);
+            }   
             return true;
         }
-        private insertCategoryInProduct($id_product, $id_categories)
+        /**
+         * undocumented function summary
+         *
+         * Undocumented function long description
+         *
+         * @param Type $var Description
+         * @return type
+         * @throws conditon
+         **/
+        private function insertCategoryInProduct($id_product, $id_categories)
         {
-            for ($i = 0; $i < count($id_categories); $i++) {
-
-                try {
-                    $sql = "INSERT INTO product_category (id_category, id_product) 
-                        VALUES (
-                            '$id_categories[$i]',
-                            '$id_prod'
-                        )
-                    ";
-                    $sql = $this->db->query($query);
-                } catch (PDOException $e) {
-                    echo "Erro: ".$e->getMessage();
-                }
-            }
+            $sql = "INSERT INTO product_category (id_category, id_product) VALUES ( :id_cat, :id_prod)";
+            $stmt = $this->db->prepare($sql);
+            $stmt->bindValue(":id_cat", $id_categories);
+            $stmt->bindValue(":id_prod", $id_product);
+            $stmt->execute();
         }
         
     }

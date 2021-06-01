@@ -3,83 +3,83 @@
     
     class ImageController
     {
-        public function AddProductImage() :string
+        public function AddProductImage()
         {
             // script de verificação de imagem
-            if ( isset( $_FILES[ 'arquivo' ][ 'name' ] ) && $_FILES[ 'arquivo' ][ 'error' ] == 0 ) {
+            if ( isset( $_FILES[ 'archive' ][ 'name' ] ) && $_FILES[ 'archive' ][ 'error' ] == 0 ) {
 
-                $arquivo_tmp = $_FILES[ 'arquivo' ][ 'tmp_name' ];
-                $nome = $_FILES[ 'arquivo' ][ 'name' ];
+                $archive_tmp = $_FILES[ 'archive' ][ 'tmp_name' ];
+                $name = $_FILES[ 'archive' ][ 'name' ];
             
                 // Pega a extensão
-                $extensao = pathinfo ( $nome, PATHINFO_EXTENSION );
+                $extension = pathinfo ( $name, PATHINFO_EXTENSION );
             
                 // Converte a extensão para minúsculo
-                $extensao = strtolower ( $extensao );
+                $extension = strtolower ( $extension );
             
                 // Somente imagens, .jpg;.jpeg;.gif;.png
                 // Aqui eu enfileiro as extensões permitidas e separo por ';'
                 // Isso serve apenas para eu poder pesquisar dentro desta String
-                if ( strstr ( '.jpg;.jpeg;.gif;.png', $extensao ) ) {
-                    // Cria um nome único para esta imagem
+                if ( strstr ( '.jpg;.jpeg;.gif;.png', $extension ) ) {
+                    // Cria um name único para esta imagem
                     // Evita que duplique as imagens no servidor.
                     // Evita nomes com acentos, espaços e caracteres não alfanuméricos
-                    $novoNome = uniqid ( time () ) . '.' . $extensao;
+                    $newName = uniqid ( time () ) . '.' . $extension;
             
-                    // Concatena a pasta com o nome
-                    $destino = '../Assets/images/product/ ' . $novoNome;
+                    // Concatena a pasta com o name
+                    $archivePath = $_SERVER['DOCUMENT_ROOT'].'/Assets/images/product/ ' . $newName;
             
-                    // tenta mover o arquivo para o destino
-                    if ( @move_uploaded_file ( $arquivo_tmp, $destino ) ) {
+                    // tenta mover o archive para o archivePath
+                    if ( @move_uploaded_file ( $archive_tmp, $archivePath ) ) {
                         
                     }
                     else
-                        echo 'Erro ao salvar o arquivo. Aparentemente você não tem permissão de escrita.<br />';
+                        echo 'Erro ao salvar o archive. Aparentemente você não tem permissão de escrita.<br />';
                 }
                 else
                     echo 'Você poderá enviar apenas arquivos "*.jpg;*.jpeg;*.gif;*.png"<br />';
             }
             else
-                echo 'Você não enviou nenhum arquivo!';
+                echo 'Você não enviou nenhum archive!';
             
-            return $directory;
+            return $archivePath;
         }
         public function UpdateProductImage() :string
         {
             // script de verificação de imagem
 
-                $arquivo_tmp = $_FILES[ 'arquivo' ][ 'tmp_name' ];
-                $nome = $_FILES[ 'arquivo' ][ 'name' ];
+                $archive_tmp = $_FILES[ 'archive' ][ 'tmp_name' ];
+                $name = $_FILES[ 'archive' ][ 'name' ];
             
                 // Pega a extensão
-                $extensao = pathinfo ( $nome, PATHINFO_EXTENSION );
+                $extension = pathinfo ( $name, PATHINFO_EXTENSION );
             
                 // Converte a extensão para minúsculo
-                $extensao = strtolower ( $extensao );
+                $extension = strtolower ( $extension );
             
                 // Somente imagens, .jpg;.jpeg;.gif;.png
                 // Aqui eu enfileiro as extensões permitidas e separo por ';'
                 // Isso serve apenas para eu poder pesquisar dentro desta String
-                if ( strstr ( '.jpg;.jpeg;.gif;.png', $extensao ) ) {
-                    // Cria um nome único para esta imagem
+                if ( strstr ( '.jpg;.jpeg;.gif;.png', $extension ) ) {
+                    // Cria um name único para esta imagem
                     // Evita que duplique as imagens no servidor.
                     // Evita nomes com acentos, espaços e caracteres não alfanuméricos
-                    $novoNome = uniqid ( time () ) . '.' . $extensao;
+                    $newName = uniqid ( time () ) . '.' . $extension;
             
-                    // Concatena a pasta com o nome
-                    $destino = '../Assets/images/product/ ' . $novoNome;
+                    // Concatena a pasta com o name
+                    $archivePath = '../Assets/images/product/ ' . $newName;
             
-                    // tenta mover o arquivo para o destino
-                    if ( @move_uploaded_file ( $arquivo_tmp, $destino ) ) {
+                    // tenta mover o archive para o archivePath
+                    if ( @move_uploaded_file ( $archive_tmp, $archivePath ) ) {
                         
                     }
                     else
-                        echo 'Erro ao salvar o arquivo. Aparentemente você não tem permissão de escrita.<br />';
+                        echo 'Erro ao salvar o archive. Aparentemente você não tem permissão de escrita.<br />';
                 }
                 else
                     echo 'Você poderá enviar apenas arquivos "*.jpg;*.jpeg;*.gif;*.png"<br />';
             
             
-            return $directory;
+            return $archivePath;
         }
     }

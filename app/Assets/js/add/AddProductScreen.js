@@ -1,5 +1,11 @@
 $(document).ready(function () {
   listCategory();
+  $('#form-add-product').bind('submit', function(e){
+    e.preventDefault();
+    var form = $('#form-add-product')[0];
+    var data = new FormData(form);
+    addProduct(data);
+  });
 });
 
 /**
@@ -19,6 +25,26 @@ function listCategory(){
                 html += '<option value ='+json[i].id+'>'+json[i].name_category+'</option>';
             }
             $('#category').append(html); 
+        }
+    });
+}
+function addProduct(data){
+    $.ajax({
+        type: "POST",
+        url: "addProduct",
+        data: data,
+        contentType:false,
+        processData:false,
+        success: function () {
+
+            $('#form-add-product').trigger("reset");
+            $('#alert').addClass('success-msg');
+            $('#alert').fadeIn().html('Produto cadastrado com sucesso.');
+            setTimeout(function(){
+                $('#alert').fadeOut('Slow')
+                $('#alert').fadeIn().html('');
+                $('#alert').removeClass('success-msg');
+            }, 5000)
         }
     });
 }
