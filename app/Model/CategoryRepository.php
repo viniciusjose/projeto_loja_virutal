@@ -71,7 +71,7 @@
          * @param Integer $id Id de identificação do produto
          */
         public function removeCategory($id)
-        {
+        {   $this->deleteCategoryInProduct($id);
             $sql = "DELETE FROM category Where id = :id";
             $sql = $this->db->prepare($sql);
             $sql->bindValue(':id', $id);
@@ -132,5 +132,11 @@
             if ($sql->rowCount() > 0){
                 return $sql->fetch();
             } 
+        }
+        private function deleteCategoryInProduct($id){
+            $sql = "DELETE FROM product_category WHERE id_category = :id";
+            $stmt = $this->db->prepare($sql);
+            $stmt->bindValue(":id", $id);
+            $stmt->execute();
         } 
     }
