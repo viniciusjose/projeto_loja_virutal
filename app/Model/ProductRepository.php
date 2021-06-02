@@ -2,6 +2,7 @@
     namespace MyApp\Model;
 
     use MyApp\Core\Model;
+    use MyApp\Model\ProductCategories;
 
 
     class ProductRepository extends Model
@@ -49,27 +50,10 @@
             $stmt->bindValue(":quantity",$qtd_prod);
             $stmt->execute();
             $id_prod = intval($this->db->lastInsertId());
+            $relationship = new ProductCategories();
             for ($i = 0; $i < count($id_categories); $i++) {
-                $this->insertCategoryInProduct($id_prod, $id_categories[$i]);
+                $relationship->createRelationship($id_prod, $id_categories[$i]);
             }   
             return true;
         }
-        /**
-         * undocumented function summary
-         *
-         * Undocumented function long description
-         *
-         * @param Type $var Description
-         * @return type
-         * @throws conditon
-         **/
-        private function insertCategoryInProduct($id_product, $id_categories)
-        {
-            $sql = "INSERT INTO product_category (id_category, id_product) VALUES ( :id_cat, :id_prod)";
-            $stmt = $this->db->prepare($sql);
-            $stmt->bindValue(":id_cat", $id_categories);
-            $stmt->bindValue(":id_prod", $id_product);
-            $stmt->execute();
-        }
-        
     }

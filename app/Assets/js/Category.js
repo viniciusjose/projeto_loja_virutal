@@ -44,9 +44,9 @@ function showCategory(){
  * @param {Integer} id Id de identificação da categoria.
  */
 function showModal(id){
-    $('.modal').find('p:eq(0)').html('Voce tem certeza que deseja excluir esta categoria ?');
-    $('.modal_bg').show();
-    $('.btn-delete').bind('click', function(){
+        $('.modal').find('p:eq(0)').html('Voce tem certeza que deseja excluir esta categoria ?');
+        $('.modal_bg').show();
+        $('.btn-delete').bind('click', function(){
         deleteCategory(id);
     });
 }

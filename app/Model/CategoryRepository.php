@@ -17,6 +17,43 @@
     class CategoryRepository extends Model implements categoryTemplate
     {
         /**
+         * Listagem de todas as categorias cadastradas no banco de dados
+         *
+         * Método responsável por realizar a consulta de todas categorias cadastradas
+         * no banco de dados e retornar um array para a classe controller.
+         *
+         * @return Array
+         **/
+        public function listCategory()
+        {   
+            $allCategory = [];
+            $sql = "SELECT * FROM category";
+            $sql = $this->db->prepare($sql);
+            $sql->execute();
+            if ($sql->rowCount() > 0){
+                $allCategory = $sql->fetchAll();
+            }
+            return $allCategory;
+        }
+        /**
+         * Listagem da categoria selecionada pelo usuário para edição.
+         * Método responsável por realizar a consulta da categoria selecionada pelo
+         * usuário e retornar um array com todos os dados da categoria.
+         * 
+         * @param Integer $id número de identificação da categoria selecionada.
+         * @return Array
+         **/
+        public function listCategoryById($id)
+        {
+            $sql = 'SELECT cod_category, name_category FROM category WHERE id = :id';
+            $sql = $this->db->prepare($sql);
+            $sql->bindValue(':id', $id);
+            $sql->execute();
+            if ($sql->rowCount() > 0){
+                return $sql->fetch();
+            } 
+        }
+        /**
          * Método de inserção de novas categorias ao banco de dados.
          *
          * Ao entrar com todas as informações de categoria, primeiramente
@@ -71,30 +108,11 @@
          * @param Integer $id Id de identificação do produto
          */
         public function removeCategory($id)
-        {   $this->deleteCategoryInProduct($id);
-            $sql = "DELETE FROM category Where id = :id";
+        {   
+            $sql = "DELETE FROM category WHERE id = :id";
             $sql = $this->db->prepare($sql);
             $sql->bindValue(':id', $id);
             $sql->execute();
-        }
-        /**
-         * Listagem de todas as categorias cadastradas no banco de dados
-         *
-         * Método responsável por realizar a consulta de todas categorias cadastradas
-         * no banco de dados e retornar um array para a classe controller.
-         *
-         * @return Array
-         **/
-        public function listCategory()
-        {   
-            $allCategory = [];
-            $sql = "SELECT * FROM category";
-            $sql = $this->db->prepare($sql);
-            $sql->execute();
-            if ($sql->rowCount() > 0){
-                $allCategory = $sql->fetchAll();
-            }
-            return $allCategory;
         }
         /**
          * Checagem de categorias já cadastradas
@@ -115,28 +133,4 @@
             }
             return true;
         }
-        /**
-         * Listagem da categoria selecionada pelo usuário para edição.
-         * Método responsável por realizar a consulta da categoria selecionada pelo
-         * usuário e retornar um array com todos os dados da categoria.
-         * 
-         * @param Integer $id número de identificação da categoria selecionada.
-         * @return Array
-         **/
-        public function listCategoryById($id)
-        {
-            $sql = 'SELECT cod_category, name_category FROM category WHERE id = :id';
-            $sql = $this->db->prepare($sql);
-            $sql->bindValue(':id', $id);
-            $sql->execute();
-            if ($sql->rowCount() > 0){
-                return $sql->fetch();
-            } 
-        }
-        private function deleteCategoryInProduct($id){
-            $sql = "DELETE FROM product_category WHERE id_category = :id";
-            $stmt = $this->db->prepare($sql);
-            $stmt->bindValue(":id", $id);
-            $stmt->execute();
-        } 
     }

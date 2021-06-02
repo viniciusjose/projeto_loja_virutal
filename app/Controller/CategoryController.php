@@ -4,6 +4,7 @@
 
     use MyApp\Core\Controller;
     use MyApp\Model\CategoryRepository;
+    use MyApp\Model\ProductCategories;
 
     /**
      * Realiza todas as implementações das páginas relacionadas a categorias.
@@ -132,6 +133,9 @@
          **/
         public function removeCategory($id)
         {
+            $relationship = new ProductCategories();
+            $relationship->deleteRelationshipCategory($id);
+
             $cateRepo = new CategoryRepository();
             $cateRepo->removeCategory($id);
         }
