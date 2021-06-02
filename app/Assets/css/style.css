@@ -367,9 +367,9 @@ body {
       position: absolute;
       top: 20%;
       left: 50%;
-      margin-left: -450px;
-      width: 900px;
-      height: 500px;
+      margin-left: -350px;
+      width: 700px;
+      height: 460px;
       background-color: #fff;
       z-index: 100;
       border-radius: 0.5rem;
@@ -380,7 +380,12 @@ body {
       right: 3%;
       top: 3%;
     }
+    .modal_img h3 {
+      margin-top: 2rem;
+      margin-left: 2rem;
+    }
     .img_prod{
+      margin-top: 3rem;
       position: absolute;
       width: 400px;
       height: 350px;
