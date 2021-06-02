@@ -383,7 +383,7 @@ body {
     .img_prod{
       position: absolute;
       width: 400px;
-      height: auto;
+      height: 350px;
       top: 10%;
       left: 50%;
       margin-left: -200px;

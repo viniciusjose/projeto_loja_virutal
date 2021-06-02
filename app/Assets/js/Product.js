@@ -24,7 +24,7 @@ function showProduct(){
                                 <span class="data-grid-cell-content">'+json[i].quantity+'</span>\n\
                             </td>\n\
                             <td class="data-grid-td">\n\
-                                <span class="data-grid-cell-content">'+json[i].name_category+'</span>\n\
+                                <span class="data-grid-cell-content">'+json[i].categories+'</span>\n\
                             </td>\n\
                             <td class="data-grid-td">\n\
                                 <span class="data-grid-cell-content"><a href="#" onclick="showModalImage(\''+json[i].image_product+'\')">Visualizar Imagem</a></span>\n\
