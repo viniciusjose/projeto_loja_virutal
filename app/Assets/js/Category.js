@@ -27,7 +27,7 @@ function showCategory(){
                                         <span><a href='Category/EditScreen/"+json[i].id+"'>Editar</a></span>\n\
                                     </div>\n\
                                     <div class='action delete'>\n\
-                                        <span><a href='#' onclick='showModal("+json[i].id+")'>Deletar</a></span>\n\
+                                        <span><a href='#' onclick='showModal("+json[i].id+", \""+json[i].name_category+"\")'>Deletar</a></span>\n\
                                     </div>\n\
                                 </div>\n\
                             </td>\n\
@@ -42,9 +42,10 @@ function showCategory(){
  * de click do botão Excluir e chamar a função de exclusão
  * 
  * @param {Integer} id Id de identificação da categoria.
+ * @param {String} name Nome da categoria a ser excluída.
  */
-function showModal(id){
-        $('.modal').find('p:eq(0)').html('Voce tem certeza que deseja excluir esta categoria ?');
+function showModal(id, name){
+        $('.modal').find('p:eq(0)').html('Voce tem certeza que deseja excluir a categoria ('+name+') ?');
         $('.modal_bg').show();
         $('.btn-delete').bind('click', function(){
         deleteCategory(id);
