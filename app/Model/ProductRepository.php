@@ -94,7 +94,31 @@
             }   
             return true;
         }
-
+        /**
+         * undocumented function summary
+         *
+         * Undocumented function long description
+         *
+         * @param Integer $id Id do produto a ser excluído.
+         **/
+        public function removeProduct($id)
+        {
+           $prodCategories = new ProductCategories();
+           $prodCategories->deleteRelationshipProduct($id);
+           $sql = "DELETE FROM product WHERE id = :id_prod";
+           $stmt = $this->db->prepare($sql);
+           $stmt->bindValue(":id_prod", $id);
+           $stmt->execute();
+        }
+        /**
+         * undocumented function summary
+         *
+         * Undocumented function long description
+         *
+         * @param Type $var Description
+         * @return type
+         * @throws conditon
+         **/
         private function removeDuplicate($query):array
         {
             $uniqueProducts = [];
@@ -114,7 +138,8 @@
                         $productData[$product]['sku'] = $registro['sku'];
                         $productData[$product]['price'] = $registro['price'];
                         $productData[$product]['quantity'] = $registro['quantity'];
-                        $productData[$product]['image_product'] = $registro['image_product'];                
+                        $productData[$product]['image_product'] = $registro['image_product'];
+                        $productData[$product]['id_prod'] = $registro['id'];                
                         array_push($productData[$product]['categories'], $registro['name_category']);
                     }
                 }
