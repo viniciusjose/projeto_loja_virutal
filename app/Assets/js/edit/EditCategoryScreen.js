@@ -23,7 +23,7 @@ function updateCategory(cod_category, name_category){
     var id_cat = window.location.href.split('/') 
     $.ajax({
         type: "POST",
-        url: 'http://localhost:8000/Category/updateCategory/'+id_cat[5],
+        url: 'Category/updateCategory/'+id_cat[5],
         data: {
             'category-name' : name_category,
             'category-code': cod_category

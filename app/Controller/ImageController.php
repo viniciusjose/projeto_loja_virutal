@@ -27,7 +27,7 @@
                     $newName = uniqid ( time () ) . '.' . $extension;
             
                     // Concatena a pasta com o name
-                    $archivePath = $_SERVER['DOCUMENT_ROOT'].'/Assets/images/product/ ' . $newName;
+                    $archivePath = $_SERVER['DOCUMENT_ROOT'].'/Assets/images/product/'. $newName;
             
                     // tenta mover o archive para o archivePath
                     if ( @move_uploaded_file ( $archive_tmp, $archivePath ) ) {
@@ -42,7 +42,7 @@
             else
                 echo 'Você não enviou nenhum archive!';
             
-            return $archivePath;
+            return $newName;
         }
         public function UpdateProductImage() :string
         {

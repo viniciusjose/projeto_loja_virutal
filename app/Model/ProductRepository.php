@@ -7,7 +7,45 @@
 
     class ProductRepository extends Model
     {
-
+        /**
+         * Listagem de produtos cadastrados.
+         *
+         * Método responsável por realizar a busca de todos os
+         * produtos cadastrados no banco de dados.
+         *
+         * @return Array.
+         **/
+        public function listProduct()
+        {
+            $sql = "SELECT p.id, sku, name_product, name_category, price, description_product, image_product, quantity 
+                    FROM product as p LEFT JOIN product_category as pc ON p.id = pc.id_product 
+                    LEFT JOIN category as c ON pc.id_category = c.id";
+            $stmt = $this->db->prepare($sql);
+            $stmt->execute();
+            if($stmt->rowCount() > 0){
+               return $this->removeDuplicate($stmt->fetchAll());
+            }
+            return;
+        }
+        /**
+         * Busca por ID de produtos cadastrados.
+         *
+         * Método responsável por realizar a busca de um produto
+         * especifico requisitado pelo Controller.
+         *
+         * @param Integer Id de identificação do produto.
+         * @return Array.
+         **/
+        public function listProductById($id)
+        {
+            $sql = "";
+            $stmt = $this->db->prepare($sql);
+            $stmt->execute();
+            if($stmt->rowCount() > 0){
+                return $stmt->fetchAll();
+            }
+            return;
+        }
         /**
          * Inserção de produto.
          *
@@ -55,5 +93,32 @@
                 $relationship->createRelationship($id_prod, $id_categories[$i]);
             }   
             return true;
+        }
+
+        private function removeDuplicate($query):array
+        {
+            $uniqueProducts = [];
+            foreach ($query as $product) { 
+                if(!array_key_exists($product['id'], $uniqueProducts)){
+                    array_push($uniqueProducts, $product['id']);
+                }
+            }
+            $productData = [];
+            foreach ($uniqueProducts as $product) {
+                $productData[$product]= [];
+                $productData[$product]['categories']= [];
+                foreach ($query as $registro) {
+                   
+                    if($registro['id'] == $product){
+                        $productData[$product]['name_product'] = $registro['name_product'];
+                        $productData[$product]['sku'] = $registro['sku'];
+                        $productData[$product]['price'] = $registro['price'];
+                        $productData[$product]['quantity'] = $registro['quantity'];
+                        $productData[$product]['image_product'] = $registro['image_product'];                
+                        array_push($productData[$product]['categories'], $registro['name_category']);
+                    }
+                }
+            }
+            return $productData;
         }
     }

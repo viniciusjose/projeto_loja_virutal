@@ -9,7 +9,7 @@ $(document).ready(function () {
 function showCategory(){
     $.ajax({
         type: "POST",
-        url: "http://localhost:8000/Category/listCategory",
+        url: "Category/listCategory",
         dataType: "json",
         success: function (json) {
             var html = '';

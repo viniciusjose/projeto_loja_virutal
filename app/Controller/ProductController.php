@@ -45,6 +45,30 @@
             $this->loadTemplate('AddProduct', $data);
         }
         /**
+         * Método de renderização da página de editar produtos.
+         *
+         * Responsável por realizar a requisição dos dados a serem
+         * exibidos para o usuário e a chamada da tela de edição
+         * de produtos.
+         *
+         * @var Array $data Informações que serão inseridas na view AddProduct.html
+         **/
+        public function editScreen($id)
+        {   
+            $prodRepo = new ProductRepository();
+            $data = [
+                'title' => 'Adicionar Produtos',
+                'BASE_URL' => BASE_URL,
+                'scriptPage' => 'add/AddProductScreen'
+            ];
+            $this->loadTemplate('AddProduct', $data);
+        }
+        public function listProduct()
+        {
+            $prodRepo = new ProductRepository();
+            echo json_encode($prodRepo->listProduct());
+        }
+        /**
          * Método de renderização da página de Logs
          *
          * Responsável por requisitar para a camada view o conteúdo a ser
@@ -67,8 +91,6 @@
             $status = true;
             $prodRepo = new ProductRepository();
             $image = new ImageController();
-        
-                
             $sku = addslashes(strtoupper($_POST['sku']));
             $name = addslashes(ucwords($_POST['name']));
             $price = addslashes(
