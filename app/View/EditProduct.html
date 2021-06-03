@@ -5,37 +5,38 @@
   <form action="{BASE_URL}Product/insert" enctype = "multipart/form-data" id="form-add-product">
     <div class="input-field">
       <label for="sku" class="label">SKU</label>
-      <input type="text" id="sku" required name="sku" class="input-text" /> 
+      <input type="text" id="sku" required name="sku" class="input-text" value="{SKU}"/> 
     </div>
     <div class="input-field">
       <label for="name" class="label">Nome do Produto</label>
-      <input type="text" id="name" required name="name"class="input-text" /> 
+      <input type="text" id="name" required name="name"class="input-text" value="{NAME}"/> 
     </div>
     <div class="input-field">
       <label for="price" class="label">Preço</label>
-      <input type="text" id="price" required name="price"class="input-text" /> 
+      <input type="text" id="price" required name="price"class="input-text" value="{PRICE}"/> 
     </div>
     <div class="input-field">
       <label for="quantity" class="label">Quantidade</label>
-      <input type="number" id="quantity" required name="quantity"class="input-text" /> 
+      <input type="number" id="quantity" required name="quantity"class="input-text" value="{QUANTITY}"/> 
     </div>
     <div class="input-field">
       <label for="category" class="label">Categoria</label>
       <select multiple  required name='category[]' id='category' class='input-text'>
-      
+      {option}
       </select>
     </div>
     <div class="input-field">
       <label for="description" class="label">Descrição</label>
-      <textarea id="description" class="input-text" required name="description"></textarea>
+      <textarea id="description" class="input-text" required name="description">{DESCRIPTION}</textarea>
     </div>
     <div class="input-field">
       <label for="image" class="label">Selecione uma imagem</label>
       <input required id="image" type="file" name="archive" class="input-text">
+      <a href="{BASE_URL}Assets/images/product/{NAME_IMAGE}" target="_blank" title="Exibe imagem já inserida em uma nova aba, caso necessite trocar clique em Escolher um Arquivo">Visualizar a Imagem</a>
     </div>
     <div class="actions-form">
       <a href="{BASE_URL}Product" class="action back">Voltar</a>
-      <p>Para adicionar um novo produto, é obrigatório ter ao menos 1 categoria disponível para seleção</p>
+      <p>Para alterar o produto, é <b>obrigatório</b> ter ao menos 1 categoria disponível para seleção</p>
       <input class="btn-submit btn-action" type="submit" value="Salvar Produto" />
     </div>
     

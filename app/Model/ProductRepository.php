@@ -38,8 +38,11 @@
          **/
         public function listProductById($id)
         {
-            $sql = "";
+            $sql = "SELECT p.id, sku, name_product, name_category, price, description_product, image_product, quantity 
+                    FROM product as p LEFT JOIN product_category as pc ON p.id = pc.id_product 
+                    LEFT JOIN category as c ON pc.id_category = c.id WHERE p.id = :id";
             $stmt = $this->db->prepare($sql);
+            $stmt->bindValue(":id", $id);
             $stmt->execute();
             if($stmt->rowCount() > 0){
                 return $stmt->fetchAll();

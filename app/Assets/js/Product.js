@@ -18,7 +18,7 @@ function showProduct(){
                                 <span class="data-grid-cell-content">'+json[i].sku+'</span>\n\
                             </td>\n\
                             <td class="data-grid-td">\n\
-                                <span class="data-grid-cell-content">'+json[i].price+'</span>\n\
+                                <span class="data-grid-cell-content">R$ '+json[i].price+'</span>\n\
                             </td>\n\
                             <td class="data-grid-td">\n\
                                 <span class="data-grid-cell-content">'+json[i].quantity+'</span>\n\

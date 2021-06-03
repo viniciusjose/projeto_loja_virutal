@@ -13,6 +13,25 @@
     class ProductCategories extends Model
     {
         /**
+         * undocumented function summary
+         *
+         * Undocumented function long description
+         *
+         * @param Type $var Description
+         * @return type
+         * @throws conditon
+         **/
+        public function listRelationship($id)
+        {
+           $sql = "SELECT * FROM product_category WHERE id_product = :id";
+           $stmt = $this->db->prepare($sql);
+           $stmt->bindValue(":id", $id);
+           $stmt->execute();
+           if($stmt->rowCount() > 0){
+               return $stmt->fetchAll();
+           }
+        }
+        /**
          * Criação do relacionamento entre produtos e categorias
          *
          * Método responsável por realizar a inserção do relacionamento

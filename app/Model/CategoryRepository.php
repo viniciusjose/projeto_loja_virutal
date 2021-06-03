@@ -26,14 +26,13 @@
          **/
         public function listCategory()
         {   
-            $allCategory = [];
             $sql = "SELECT * FROM category";
-            $sql = $this->db->prepare($sql);
-            $sql->execute();
-            if ($sql->rowCount() > 0){
-                $allCategory = $sql->fetchAll();
+            $stmt = $this->db->prepare($sql);
+            $stmt->execute();
+            if ($stmt->rowCount() > 0){
+               return $stmt->fetchAll();
             }
-            return $allCategory;
+            return;
         }
         /**
          * Listagem da categoria selecionada pelo usuário para edição.
@@ -46,11 +45,11 @@
         public function listCategoryById($id)
         {
             $sql = 'SELECT cod_category, name_category FROM category WHERE id = :id';
-            $sql = $this->db->prepare($sql);
-            $sql->bindValue(':id', $id);
-            $sql->execute();
-            if ($sql->rowCount() > 0){
-                return $sql->fetch();
+            $stmt = $this->db->prepare($sql);
+            $stmt->bindValue(':id', $id);
+            $stmt->execute();
+            if ($stmt->rowCount() > 0){
+                return $stmt->fetch();
             } 
         }
         /**
