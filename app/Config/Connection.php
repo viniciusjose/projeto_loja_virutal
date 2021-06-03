@@ -10,6 +10,7 @@ $host = isset($conf['host']) ? $conf['host'] : null;
 $type = isset($conf['type']) ? $conf['type'] : null;
 
 global $db;
+
 switch ($type){
 
     case 'pgsql':
