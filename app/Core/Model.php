@@ -1,12 +1,13 @@
 <?php
-    namespace MyApp\Core;
+
+namespace MyApp\Core;
+
+class Model
+{
+    protected $db;
     
-    class Model
-    {
-        protected $db;
-        
-        public function __construct(){
-            global $db;
-            $this->db = $db;
-        }
+    public function __construct(){
+        global $db;
+        $this->db = $db;
     }
+}

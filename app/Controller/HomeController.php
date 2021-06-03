@@ -1,18 +1,19 @@
 <?php
-    namespace MyApp\Controller;
+    
+namespace MyApp\Controller;
 
-    use MyApp\Core\Controller;
+use MyApp\Core\Controller;
 
-    class HomeController extends Controller
+class HomeController extends Controller
+{
+
+    public function index()
     {
-
-        public function index()
-        {
-            $data = [
-                'title' => 'Dashboard',
-                'BASE_URL' => BASE_URL,
-                'scriptPage' => 'Dashboard'
-            ];
-            $this->loadTemplate('Dashboard', $data);
-        }
+        $data = [
+            'title' => 'Dashboard',
+            'BASE_URL' => BASE_URL,
+            'scriptPage' => 'Dashboard'
+        ];
+        $this->loadTemplate('Dashboard', $data);
     }
+}
