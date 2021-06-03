@@ -36,7 +36,7 @@ function addProduct(data){
         contentType:false,
         processData:false,
         success: function () {
-
+            $('html, body').animate({scrollTop : 0},800);
             $('#form-add-product').trigger("reset");
             $('#alert').addClass('success-msg');
             $('#alert').fadeIn().html('Produto cadastrado com sucesso.');
@@ -44,7 +44,7 @@ function addProduct(data){
                 $('#alert').fadeOut('Slow')
                 $('#alert').fadeIn().html('');
                 $('#alert').removeClass('success-msg');
-            }, 5000)
+            }, 6000)
         }
     });
 }
