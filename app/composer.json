@@ -21,7 +21,7 @@
           "MyApp\\":"../app/"
         },
         "files": [
-          "Config/Config.php"
+          "Config/Connection.php"
         ]
     }
   }
