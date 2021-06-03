@@ -44,7 +44,7 @@ function addProduct(data){
                 $('#alert').fadeOut('Slow')
                 $('#alert').fadeIn().html('');
                 $('#alert').removeClass('success-msg');
-            }, 6000)
+            }, 5000)
         }
     });
 }

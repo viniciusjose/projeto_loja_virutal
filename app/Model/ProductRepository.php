@@ -105,13 +105,21 @@
          * @param Integer $id Id do produto a ser excluído.
          **/
         public function removeProduct($id)
-        {
-           $prodCategories = new ProductCategories();
-           $prodCategories->deleteRelationshipProduct($id);
-           $sql = "DELETE FROM product WHERE id = :id_prod";
-           $stmt = $this->db->prepare($sql);
-           $stmt->bindValue(":id_prod", $id);
-           $stmt->execute();
+        {   
+            /**
+             * Listagem do produto cadastrado para utilizar a função
+             * unlink para excluir a imagem do produto da pasta de imagens.
+             */
+            $listProduct = $this->listProductById($id);
+            unlink($_SERVER['DOCUMENT_ROOT'].'/Assets/images/product/'.$listProduct[0]['image_product']);
+
+            $prodCategories = new ProductCategories();
+            $prodCategories->deleteRelationshipProduct($id);
+
+            $sql = "DELETE FROM product WHERE id = :id_prod";
+            $stmt = $this->db->prepare($sql);
+            $stmt->bindValue(":id_prod", $id);
+            $stmt->execute();
         }
         /**
          * undocumented function summary
