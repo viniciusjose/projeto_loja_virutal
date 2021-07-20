@@ -1,4 +1,4 @@
-# Projeto Loja Virtual Webjump
+# Projeto Loja Virtual
 
 O escopo do projeto consiste em codificar o back-end em PHP de uma loja virtual com cadastro, alteração,
 exclusão de produtos em um banco de dados relacional ou não e cadastro, alteração e exclusão de categorias.
