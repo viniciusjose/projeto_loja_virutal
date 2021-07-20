@@ -219,7 +219,7 @@ body {
       transition: background-color .1s linear;
       vertical-align: top;
     }
-        
+
 
     .actions-form {
       display:-webkit-flex;
@@ -235,13 +235,13 @@ body {
 
     .action.back {
 
-      text-decoration: none;   
+      text-decoration: none;
       background-color: #333;
       border-color: #333;
       color: #fff;
       text-shadow: 1px 1px 0 rgba(0,0,0,0.25);
       padding: 15px 20px;
-      font-size: 20px;  
+      font-size: 20px;
     }
 
     .input-field {
@@ -282,6 +282,11 @@ body {
       }
     }
     /*Customizações não realizadas pela Webjump*/
+    .caption-image{
+      color: gray;
+      font-size: 15px;
+      margin-left: 16rem;
+    }
     .success-msg{
       padding: 30px;
       color: #008800 ;
@@ -394,3 +399,11 @@ body {
       margin-left: -200px;
     }
     /*Fim das personalizações do Modal de imagem*/
+    #btn-image-preview{
+      margin-left: 1rem;
+      color: blue;
+      text-decoration: underline;
+    }
+    #btn-image-preview:hover{
+      cursor: pointer;
+    }

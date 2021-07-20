@@ -1,5 +1,12 @@
 <?php
 
+/**
+ * Arquivo responsável pela conexão ao banco de dados,
+ * para alteração de tipo de banco de dados, user, pass
+ * ou host, alterar o conf.ini disponibilizado neste
+ * diretório.
+ */
+
 $conf = parse_ini_file("conf.ini");
 
 define("BASE_URL", $conf['base_url']);
@@ -11,8 +18,7 @@ $type = isset($conf['type']) ? $conf['type'] : null;
 
 global $db;
 
-switch ($type){
-
+switch ($type) {
     case 'pgsql':
         $port = isset($db['port']) ? $db['port'] : '5432';
         $db = new PDO("pgsql:dbname={$name}; user={$user}; password={$pass}; host={$host}; port={$port}");
@@ -25,4 +31,3 @@ switch ($type){
         $db = new PDO("sqlite:{$name}");
         break;
 }
-

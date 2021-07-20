@@ -3,31 +3,33 @@
 namespace MyApp\Model;
 
 use MyApp\Core\Model;
+use MyApp\Model\Interfaces\IProductCategory;
 
 /**
- * 
- * Classe responsável por realizar toda a persistência entre 
+ *
+ * Classe responsável por realizar toda a persistência entre
  * o relacionamento de produtos e categorias.
- * 
+ *
  */
-class ProductCategories extends Model
+class ProductCategories extends Model implements IProductCategory
 {
     /**
-     * undocumented function summary
+     * Listagem do relacionamento entre produtos e categorias.
      *
-     * Undocumented function long description
+     * Baseado no id do produto fornecido na assinatura do método,
+     * é realizado a consulta ao banco de dados, para listar todos
+     * os relacionamentos com categorias um produto tem.
      *
-     * @param Type $var Description
-     * @return type
-     * @throws conditon
+     * @param Integer $id id do produto a ser consultado.
+     * @return Array
      **/
-    public function listRelationship($id)
+    public function listRelationship(int $id)
     {
         $sql = "SELECT * FROM product_category WHERE id_product = :id";
         $stmt = $this->db->prepare($sql);
         $stmt->bindValue(":id", $id);
         $stmt->execute();
-        if($stmt->rowCount() > 0){
+        if ($stmt->rowCount() > 0) {
             return $stmt->fetchAll();
         }
     }
@@ -39,13 +41,13 @@ class ProductCategories extends Model
      * categorias e produtos.
      *
      * @param Integer $id_product Id do produto a ser criado relacionamento.
-     * @param Integer $id_categories Id da categoria a ser vinculada ao produto.
+     * @param Integer $id_category Id da categoria a ser vinculada ao produto.
     **/
-    public function createRelationship($id_product, $id_categories)
+    public function createRelationship(int $id_product, int $id_category)
     {
         $sql = "INSERT INTO product_category (id_category, id_product) VALUES ( :id_cat, :id_prod)";
         $stmt = $this->db->prepare($sql);
-        $stmt->bindValue(":id_cat", $id_categories);
+        $stmt->bindValue(":id_cat", $id_category);
         $stmt->bindValue(":id_prod", $id_product);
         $stmt->execute();
     }
@@ -59,11 +61,11 @@ class ProductCategories extends Model
      * @param Integer $id_category Id da categoria a ser excluída do
      *  relacionamento.
     **/
-    public function deleteRelationshipCategory($id)
+    public function deleteRelationshipCategory(int $id_category)
     {
         $sql = "DELETE FROM product_category WHERE id_category = :id_cat";
         $stmt = $this->db->prepare($sql);
-        $stmt->bindValue(":id_cat", $id);
+        $stmt->bindValue(":id_cat", $id_category);
         $stmt->execute();
     }
     /**
@@ -76,11 +78,11 @@ class ProductCategories extends Model
      * @param Integer $id_category Id da categoria a ser excluída do
      *  relacionamento.
     **/
-    public function deleteRelationshipProduct($id)
+    public function deleteRelationshipProduct(int $id_product)
     {
         $sql = "DELETE FROM product_category WHERE id_product = :id_prod";
         $stmt = $this->db->prepare($sql);
-        $stmt->bindValue(":id_prod", $id);
+        $stmt->bindValue(":id_prod", $id_product);
         $stmt->execute();
     }
 }

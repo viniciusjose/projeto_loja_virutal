@@ -1,8 +1,21 @@
 <!-- Main Content -->
 <main class="content">
-  <h1 class="title new-item">Editar Produto</h1>
   
-  <form action="{BASE_URL}Product/insert" enctype = "multipart/form-data" id="form-add-product">
+  <div class="modal_bg_img">
+    <div class="modal_img">
+      <h3>Pré-Visualização da imagem</h3>
+      <a onclick="closeModal()"><img src="{BASE_URL}Assets/images/bt-close.png" width="30px"alt=""></a>
+      <div class="div_img">
+        <img src="" class="img_prod" alt="">
+      </div>
+    </div>
+  </div>
+  <h1 class="title new-item">Editar Produto</h1>
+  <div id="alert">
+      
+  </div>
+  
+  <form action="{BASE_URL}Product/insert" enctype = "multipart/form-data" id="form-edit-product">
     <div class="input-field">
       <label for="sku" class="label">SKU</label>
       <input type="text" id="sku" required name="sku" class="input-text" value="{SKU}"/> 
@@ -31,13 +44,15 @@
     </div>
     <div class="input-field">
       <label for="image" class="label">Selecione uma imagem</label>
-      <input required id="image" type="file" name="archive" class="input-text">
-      <a href="{BASE_URL}Assets/images/product/{NAME_IMAGE}" target="_blank" title="Exibe imagem já inserida em uma nova aba, caso necessite trocar clique em Escolher um Arquivo">Visualizar a Imagem</a>
+      <input id="image" type="file" name="archive" class="input-text">
+      <a id="btn-image-preview" onclick="showModalImage()" title="Exibe imagem já inserida em uma nova aba, caso necessite trocar clique em Escolher um Arquivo">Visualizar imagem cadastrada</a>
+      <p class="caption-image">* Formatos de imagens suportados: .jpg, .jpeg, .gif, .png</p>
+      <p class="caption-image">* Tamanho recomendável: 400 x 350px</p>
     </div>
     <div class="actions-form">
       <a href="{BASE_URL}Product" class="action back">Voltar</a>
       <p>Para alterar o produto, é <b>obrigatório</b> ter ao menos 1 categoria disponível para seleção</p>
-      <input class="btn-submit btn-action" type="submit" value="Salvar Produto" />
+      <input class="btn-submit btn-action" type="submit" value="Alterar Produto" />
     </div>
     
   </form>

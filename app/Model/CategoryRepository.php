@@ -3,19 +3,13 @@
 namespace MyApp\Model;
 
 use MyApp\Core\Model;
-
-interface categoryTemplate
-{
-    public function insertCategory($cod, $name);
-    public function updateCategory($id, $cod, $name);
-    public function removeCategory($id);
-}
+use MyApp\Model\Interfaces\ICategory;
 
 /**
  * Classe responsável por realizar a persistência dos dados
  * relacionados a Categoria no banco de dados.
  */
-class CategoryRepository extends Model implements categoryTemplate
+class CategoryRepository extends Model implements ICategory
 {
     /**
      * Listagem de todas as categorias cadastradas no banco de dados
@@ -26,11 +20,11 @@ class CategoryRepository extends Model implements categoryTemplate
      * @return Array
      **/
     public function listCategory()
-    {   
+    {
         $sql = "SELECT * FROM category";
         $stmt = $this->db->prepare($sql);
         $stmt->execute();
-        if ($stmt->rowCount() > 0){
+        if ($stmt->rowCount() > 0) {
             return $stmt->fetchAll();
         }
         return;
@@ -39,19 +33,19 @@ class CategoryRepository extends Model implements categoryTemplate
      * Listagem da categoria selecionada pelo usuário para edição.
      * Método responsável por realizar a consulta da categoria selecionada pelo
      * usuário e retornar um array com todos os dados da categoria.
-     * 
+     *
      * @param Integer $id número de identificação da categoria selecionada.
      * @return Array
      **/
-    public function listCategoryById($id)
+    public function listCategoryById(int $id)
     {
         $sql = 'SELECT cod_category, name_category FROM category WHERE id = :id';
         $stmt = $this->db->prepare($sql);
         $stmt->bindValue(':id', $id);
         $stmt->execute();
-        if ($stmt->rowCount() > 0){
+        if ($stmt->rowCount() > 0) {
             return $stmt->fetch();
-        } 
+        }
     }
     /**
      * Método de inserção de novas categorias ao banco de dados.
@@ -64,14 +58,15 @@ class CategoryRepository extends Model implements categoryTemplate
      * @param Type $name Nome da categoria.
      * @return type Boolean
      **/
-    public function insertCategory($cod, $name)
+    public function insertCategory(array $categoryData)
     {
-        if ($this->checkCategory($cod, $name) == false) {
+
+        if ($this->checkCategory($categoryData['cod'], $categoryData['name']) == false) {
             return false;
         }
         $sql = $this->db->prepare("INSERT INTO category (cod_category, name_category) VALUES (:cod_category, :name_category)");
-        $sql->bindValue(":cod_category", $cod);
-        $sql->bindValue(":name_category", $name);
+        $sql->bindValue(":cod_category", $categoryData['cod']);
+        $sql->bindValue(":name_category", $categoryData['name']);
         $sql->execute();
         return true;
     }
@@ -81,19 +76,18 @@ class CategoryRepository extends Model implements categoryTemplate
      * Método recebe a requisição do controller com os dados da categoria
      * e realiza a ação de update das informações no banco de dados.
      *
-     * @param Integer $id Id de identificação da categoria.
-     * @param String $cod Código da categoria.
-     * @param String $name Nome da categoria.
+     * @param Array $categoryData Array com todas as informações da
+     * categoria editada.
      * @return Boolean
      **/
-    public function updateCategory($id, $cod, $name)
+    public function updateCategory(array $categoryData)
     {
-        if($this->checkCategory($cod, $name) == true){
+        if ($this->checkCategory($categoryData["cod"], $categoryData["name"]) == true) {
             $sql = "UPDATE category SET cod_category = :cod_cat, name_category = :name_cat WHERE id = :id";
             $sql = $this->db->prepare($sql);
-            $sql->bindValue(":cod_cat", $cod);
-            $sql->bindValue(":name_cat", $name);
-            $sql->bindValue(":id", $id);
+            $sql->bindValue(":cod_cat", $categoryData["cod"]);
+            $sql->bindValue(":name_cat", $categoryData["name"]);
+            $sql->bindValue(":id", $categoryData["id"]);
             $sql->execute();
             return true;
         }
@@ -101,14 +95,14 @@ class CategoryRepository extends Model implements categoryTemplate
     }
     /**
      * Exclusão de categoria.
-     * 
+     *
      * Método responsável por realizar a remoção da categoria selecionada no banco
-     * de dados. 
-     * 
+     * de dados.
+     *
      * @param Integer $id Id de identificação do produto
      */
-    public function removeCategory($id)
-    {   
+    public function removeCategory(int $id)
+    {
         $sql = "DELETE FROM category WHERE id = :id";
         $sql = $this->db->prepare($sql);
         $sql->bindValue(':id', $id);
@@ -124,11 +118,11 @@ class CategoryRepository extends Model implements categoryTemplate
      * @param String $name Nome da categoria.
      * @return Boolean
      **/
-    private function checkCategory($cod, $name)
+    private function checkCategory(string $cod, string $name)
     {
-        $sql="SELECT cod_category FROM category WHERE (cod_category = '$cod' OR name_category = '$name')";
+        $sql = "SELECT cod_category FROM category WHERE (cod_category = '$cod' AND name_category = '$name')";
         $sql = $this->db->query($sql);
-        if ($sql->rowCount() > 0){
+        if ($sql->rowCount() > 0) {
             return false;
         }
         return true;

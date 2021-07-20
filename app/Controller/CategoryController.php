@@ -8,19 +8,18 @@ use MyApp\Model\ProductCategories;
 
 /**
  * Realiza todas as implementações das páginas relacionadas a categorias.
- * 
+ *
  * Classe responsável por conter toda a regra de negocio da implementação
  * de categorias no sistema.
 **/
 class CategoryController extends Controller
 {
     /**
-     * Página Principal da aplicação
+     * Página Principal de categorias do sistema.
      *
      * Método responsável por realizar a chamada do template e desenhar a pagina inicial
      * de categorias.
      *
-     * @param Array $data Todos os dados que serão fornecidos para o front-end da aplicação
      **/
     public function index()
     {
@@ -34,10 +33,9 @@ class CategoryController extends Controller
     /**
      * Página de adição de novas categorias da aplicação
      *
-     * Método responsável por realizar a chamada do template e desenhar a 
+     * Método responsável por realizar a chamada do template e desenhar a
      * pagina de adição de novas categorias no sistema.
      *
-     * @param Array $data Todos os dados que serão fornecidos para o front-end da aplicação
      **/
     public function addScreen()
     {
@@ -55,13 +53,12 @@ class CategoryController extends Controller
      * de novas categorias no sistema e imprimir os dados da categoria cadastradas selecionada.
      *
      * @param Integer $id número de identificação da categoria selecionada.
-     * @var Array $data Todos os dados que serão fornecidos para o front-end da aplicação
      **/
-    public function editScreen($id)
+    public function editScreen(int $id)
     {
         $id = intval($id);
         $cateRepo = new CategoryRepository();
-        $dataCategory = $cateRepo->listCategoryById($id);  
+        $dataCategory = $cateRepo->listCategoryById($id);
         $data = [
             'title' => 'Editar Categoria',
             'BASE_URL' => BASE_URL,
@@ -78,9 +75,6 @@ class CategoryController extends Controller
      * e requisitar a função (insertCategory) de inserção de categoria ao banco de dados que esta localizada
      * na pasta Models/CategoryRepository.php
      *
-     * @param Boolean $status Responsável pelo retorno para o front-end.
-     * @param String $name Nome da categoria recebida pela requisição ajax
-     * @param String $cod Código da categoria recebida pela requisição ajax
      * @return Boolean
      **/
     public function addCategory()
@@ -89,12 +83,17 @@ class CategoryController extends Controller
         $cateRepo = new CategoryRepository();
         $name = ucfirst(addslashes($_POST['category-name']));
         $cod = strtoupper($_POST['category-code']);
-        if ($cateRepo->insertCategory($cod, $name)) {
+
+        $categoryFormData = [
+            "name" => $name,
+            "cod"  => $cod
+        ];
+        if ($cateRepo->insertCategory($categoryFormData)) {
             echo json_encode($status);
             return;
-        } 
+        }
         $status = false;
-        echo json_encode($status);  
+        echo json_encode($status);
     }
     /**
      * Update de categorias
@@ -104,22 +103,25 @@ class CategoryController extends Controller
      * posse das mesmas requisita o método que altera as informações no banco.
      *
      * @param Integer $id Id de identificação da categoria recebido pela requisição ajax.
-     * @var Boolean $status Variável responsável por receber o status da transação.
-     * @var String $name Nome da categoria.
-     * @var String $cod Código da categoria.
-     * @return Json
+     *
      **/
-    public function updateCategory($id)
+    public function updateCategory(int $id)
     {
         $status = true;
         $cateRepo = new CategoryRepository();
         $id = addslashes($id);
         $name = ucfirst(addslashes($_POST['category-name']));
         $cod = strtoupper($_POST['category-code']);
-        if ($cateRepo->updateCategory($id ,$cod, $name)) {
+
+        $categoryFormData = [
+            "id"   => $id,
+            "name" => $name,
+            "cod"  => $cod
+        ];
+        if ($cateRepo->updateCategory($categoryFormData)) {
             echo json_encode($status);
             return;
-        } 
+        }
         $status = false;
         echo json_encode($status);
     }
@@ -131,7 +133,7 @@ class CategoryController extends Controller
      *
      * @param Integer $id Id da categoria recebida pela requisição ajax.
      **/
-    public function removeCategory($id)
+    public function removeCategory(int $id)
     {
         $relationship = new ProductCategories();
         $relationship->deleteRelationshipCategory($id);
@@ -145,13 +147,12 @@ class CategoryController extends Controller
      * Função responsável por receber a requisição ajax e retornar em json
      * todas os dados de categorias cadastradas no banco de dados.
      *
-     * @return JSON
      **/
     public function listCategory()
     {
-        $jsonCategory = [];    
+        $jsonCategory = [];
         $cateRepo = new CategoryRepository();
-        $dataCategory = $cateRepo->listCategory(); 
+        $dataCategory = $cateRepo->listCategory();
         echo json_encode($dataCategory, JSON_UNESCAPED_UNICODE);
-    } 
+    }
 }

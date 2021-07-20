@@ -4,7 +4,7 @@ $(document).ready(function () {
      * e chamada da função que realiza a persistência dos dados de
      * categoria.
      */
-    $('#form-add-category').on('submit', function(e){
+    $('#form-add-category').on('submit', function (e) {
         e.preventDefault();
         var codCat = $('#category-code').val();
         var nameCat = $('#category-name').val();
@@ -13,37 +13,38 @@ $(document).ready(function () {
 });
 /**
  * Requisição ajax com dados das categorias.
- * 
- * Função que executa a requisição ajax com os dados inseridos pelo usuário 
+ *
+ * Método que executa a requisição ajax com os dados inseridos pelo usuário
  * para o método addCategory no arquivo CategoryController.
- * 
- * @param {String} codCat 
- * @param {String} nameCat 
+ *
+ * @param {String} codCat
+ * @param {String} nameCat
  */
-function insertCategory(codCat, nameCat){
+function insertCategory(codCat, nameCat)
+{
 
     $.ajax({
         type: "POST",
-        url: "http://localhost:8000/Category/addCategory",
+        url: "http://localhost/Category/addCategory",
         dataType:'json',
         data: {
             'category-name':nameCat,
             'category-code':codCat
         },
         success: function (json) {
-            if(json == true){
+            if (json == true) {
                 $('#form-add-category').trigger("reset");
                 $('#alert').addClass('success-msg');
                 $('#alert').fadeIn().html('Categoria cadastrada com sucesso.');
-                setTimeout(function(){
+                setTimeout(function () {
                     $('#alert').fadeOut('Slow')
                     $('#alert').fadeIn().html('');
                     $('#alert').removeClass('success-msg');
                 }, 5000)
-            }else{
+            } else {
                 $('#alert').addClass('alert-msg');
                 $('#alert').fadeIn().html('Erro ao cadastrar (Nome/Código de categorias duplicados.)');
-                setTimeout(function(){
+                setTimeout(function () {
                     $('#alert').fadeOut('Slow')
                     $('#alert').fadeIn().html('');
                     $('#alert').removeClass('alert-msg');

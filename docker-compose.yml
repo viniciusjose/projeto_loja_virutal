@@ -5,7 +5,7 @@ services:
         build: .
         restart: always
         ports:
-            - '8000:80'
+            - '80:80'
         volumes: 
             - ./app:/var/www/html
         networks: 
@@ -28,4 +28,4 @@ services:
             - default
 
 volumes:
-    db_data:    
+    db_data:
